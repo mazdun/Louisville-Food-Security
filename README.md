@@ -1,2 +1,2 @@
-# Lousiville-Food-Security
+# Louisville-Food-Security
 Food security metrics in Louisville and its peer cities
