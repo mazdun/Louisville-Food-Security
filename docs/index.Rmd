@@ -53,6 +53,9 @@ glptools::ranking(
   alternate_text = NULL,
   ranking_colors = TRUE)
 invisible(dev.off())
+
 ```
+
+![Food Security Ranking](images/food_security_ranking.png)
 
 
