@@ -53,9 +53,11 @@ glptools::ranking(
   alternate_text = NULL,
   ranking_colors = TRUE)
 invisible(dev.off())
-
 ```
 
-![Food Security Ranking](images/food_security_ranking.png)
+```{r pressure, echo=FALSE, out.width = '100%'}
+knitr::include_graphics("images/food_security_ranking.png")
+```
+
 
 
