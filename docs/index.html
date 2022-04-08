@@ -256,6 +256,14 @@ div.tocify {
 </div>
 
 
+<p>Measuring food insecurity accurately and completely is challenging because it touches on a number of difficult-to-measure factors like poverty, unemployment, median income, disability status and many other factors. Furthermore, those who are considered food insecure at one point might not be food insecure at other points in the year. Often, individuals must make difficult trade off decisions between paying housing or medical bills and buying nutritious food.</p>
+<p>However, gaining a clear understanding of a community’s food environment is essential to boosting that community’s social, health and economic health.</p>
+<p>We will look at three broad categories to gain a deeper understanding of the food ecosystem in Louisville and its peer cities:</p>
+<ul>
+<li><strong>Food Insecurity</strong> (percentage of the population who did not have reliable access to food over the past year)</li>
+<li><strong>Food Access</strong> (percentage of the population who had some barrier to accessing food over the past year — income constraints, limited vehicle access, etc.)</li>
+<li><strong>Food Environment</strong> (concentration of places to buy healthy food in Louisville and its peer cities)</li>
+</ul>
 <pre class="r"><code>library(glptools)
 library(glpdata)
 glp_load_packages(graphs = T)
@@ -264,22 +272,17 @@ font_add(&quot;Museo Sans&quot;, &quot;MuseoSans_300.otf&quot;)
 font_add(&quot;Museo Sans 300 Italic&quot;, &quot;MuseoSans_300_Italic.otf&quot;)
 knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
 knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE, 
-                      dev.args=list(bg=&quot;transparent&quot;))</code></pre>
-<div id="introduction" class="section level1">
-<h1>Introduction</h1>
-<div id="food-security" class="section level2">
-<h2>Food Security</h2>
+                      dev.args=list(bg=&quot;transparent&quot;), fig.width=30, fig.height=24)</code></pre>
+<div id="food-insecurity" class="section level2 tabset">
+<h2 class="tabset">Food Insecurity</h2>
+<div id="ranking" class="section level3">
+<h3>Ranking</h3>
 <pre class="r"><code>load(&quot;intermediate_data/food_security_county.rda&quot;)
 
 this_title &lt;- &quot;Food Insecurity&quot;
-this_caption &lt;- &quot;\nSource: Greater Louisville Project
-    Data from Feeding America&#39;s annual Map the Meal Gap study, 2021
-    Note: These are projections and could change in subsequent years.&quot;
-this_caption_trend_graphs &lt;- &quot;\nSource: Greater Louisville Project
-    Data from Feeding America&#39;s annual Map the Meal Gap study
-Note: 2020 and 2021 rely on projected data. They could change in subsequent years.&quot;
+this_caption &lt;- &quot;\n\nData from Feeding America&#39;s annual Map the Meal Gap study, 2021&quot;
+this_caption_trend_graphs &lt;- &quot;\n\nData from Feeding America&#39;s annual Map the Meal Gap study&quot;
 
-png(&quot;images/food_security_ranking.png&quot;, 3000, 2400, res = 200, bg = &quot;transparent&quot;, type = &quot;cairo&quot;)
 glptools::ranking(
   food_security_county,
   food_insecurity,
@@ -293,9 +296,42 @@ glptools::ranking(
   sigfig = 3,
   accuracy = 0.1,
   alternate_text = NULL,
-  ranking_colors = TRUE)
-invisible(dev.off())</code></pre>
-<p><img src="images/food_security_ranking.png" width="100%" /></p>
+  ranking_colors = TRUE)</code></pre>
+<p><img src="index_files/figure-html/food%20insecurity%20ranking-1.png" width="2880" /></p>
+</div>
+<div id="trend" class="section level3">
+<h3>Trend</h3>
+<pre class="r"><code>this_title &lt;- &quot;Food Insecurity&quot;
+this_caption &lt;- &quot;\n\nData from Feeding America&#39;s annual Map the Meal Gap study, 2021&quot;
+this_caption_trend_graphs &lt;- &quot;\n\nData from Feeding America&#39;s annual Map the Meal Gap study&quot;
+
+
+glptools::trend(
+  food_security_county,
+  food_insecurity,
+  rollmean = 3,
+  plot_title = this_title,
+  caption_text = this_caption_trend_graphs,
+  y_title = &quot;Percent&quot;)</code></pre>
+<p><img src="index_files/figure-html/food%20insecurity%20trend-1.png" width="2880" /></p>
+</div>
+<div id="best-and-worst-performers" class="section level3">
+<h3>Best and Worst Performers</h3>
+<pre class="r"><code>this_title &lt;- &quot;Food Insecurity&quot;
+this_caption &lt;- &quot;\n\nData from Feeding America&#39;s annual Map the Meal Gap study, 2021&quot;
+this_caption_trend_graphs &lt;- &quot;\n\nData from Feeding America&#39;s annual Map the Meal Gap study&quot;
+
+
+glptools::trend_maxmin(
+  food_security_county,
+  food_insecurity,
+  zero_start = T,
+  rollmean = 3,
+  order=&#39;Ascending&#39;,
+  y_title = &quot;Percentage points change&quot;,
+  plot_title = this_title,
+  caption_text = this_caption_trend_graphs)</code></pre>
+<p><img src="index_files/figure-html/food%20insecurity%20best%20and%20worst-1.png" width="2880" /></p>
 </div>
 </div>
 

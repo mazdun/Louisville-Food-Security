@@ -8,6 +8,15 @@ output:
     code_folding: hide
 knit: (function(inputFile, encoding) { rmarkdown::render(inputFile, encoding = encoding, output_file = file.path(dirname(inputFile), 'index.html')) })
 ---
+Measuring food insecurity accurately and completely is challenging because it touches on a number of difficult-to-measure factors like poverty, unemployment, median income, disability status and many other factors. Furthermore, those who are considered food insecure at one point might not be food insecure at other points in the year. Often, individuals must make difficult trade off decisions between paying housing or medical bills and buying nutritious food.
+
+However, gaining a clear understanding of a community’s food environment is essential to boosting that community’s social, health and economic health. 
+
+We will look at three broad categories to gain a deeper understanding of the food ecosystem in Louisville and its peer cities:
+
+* **Food Insecurity** (percentage of the population who did not have reliable access to food over the past year)
+* **Food Access** (percentage of the population who had some barrier to accessing food over the past year — income constraints, limited vehicle access, etc.)
+* **Food Environment** (concentration of places to buy healthy food in Louisville and its peer cities)
 
 ```{r setup, message=FALSE, warning=FALSE}
 library(glptools)
@@ -18,26 +27,21 @@ font_add("Museo Sans", "MuseoSans_300.otf")
 font_add("Museo Sans 300 Italic", "MuseoSans_300_Italic.otf")
 knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
 knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE, 
-                      dev.args=list(bg="transparent"))
+                      dev.args=list(bg="transparent"), fig.width=30, fig.height=24)
+
 
 ```
 
-# Introduction
+## Food Insecurity {.tabset}
 
-## Food Security
-
-```{r}
+### Ranking
+```{r food insecurity ranking}
 load("intermediate_data/food_security_county.rda")
 
 this_title <- "Food Insecurity"
-this_caption <- "\nSource: Greater Louisville Project
-    Data from Feeding America's annual Map the Meal Gap study, 2021
-    Note: These are projections and could change in subsequent years."
-this_caption_trend_graphs <- "\nSource: Greater Louisville Project
-    Data from Feeding America's annual Map the Meal Gap study
-Note: 2020 and 2021 rely on projected data. They could change in subsequent years."
+this_caption <- "\n\nData from Feeding America's annual Map the Meal Gap study, 2021"
+this_caption_trend_graphs <- "\n\nData from Feeding America's annual Map the Meal Gap study"
 
-png("images/food_security_ranking.png", 3000, 2400, res = 200, bg = "transparent", type = "cairo")
 glptools::ranking(
   food_security_county,
   food_insecurity,
@@ -52,12 +56,39 @@ glptools::ranking(
   accuracy = 0.1,
   alternate_text = NULL,
   ranking_colors = TRUE)
-invisible(dev.off())
+
 ```
 
-```{r pressure, echo=FALSE, out.width = '100%'}
-knitr::include_graphics("images/food_security_ranking.png")
+### Trend
+```{r food insecurity trend}
+this_title <- "Food Insecurity"
+this_caption <- "\n\nData from Feeding America's annual Map the Meal Gap study, 2021"
+this_caption_trend_graphs <- "\n\nData from Feeding America's annual Map the Meal Gap study"
+
+
+glptools::trend(
+  food_security_county,
+  food_insecurity,
+  rollmean = 3,
+  plot_title = this_title,
+  caption_text = this_caption_trend_graphs,
+  y_title = "Percent")
 ```
 
+### Best and Worst Performers
+```{r food insecurity best and worst, results='hide'}
+this_title <- "Food Insecurity"
+this_caption <- "\n\nData from Feeding America's annual Map the Meal Gap study, 2021"
+this_caption_trend_graphs <- "\n\nData from Feeding America's annual Map the Meal Gap study"
 
 
+glptools::trend_maxmin(
+  food_security_county,
+  food_insecurity,
+  zero_start = T,
+  rollmean = 3,
+  order='Ascending',
+  y_title = "Percentage points change",
+  plot_title = this_title,
+  caption_text = this_caption_trend_graphs)
+```
