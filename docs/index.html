@@ -256,7 +256,47 @@ div.tocify {
 </div>
 
 
+<pre class="r"><code>library(glptools)
+library(glpdata)
+glp_load_packages(graphs = T)
+showtext_auto()
+font_add(&quot;Museo Sans&quot;, &quot;MuseoSans_300.otf&quot;)
+font_add(&quot;Museo Sans 300 Italic&quot;, &quot;MuseoSans_300_Italic.otf&quot;)
+knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE, 
+                      dev.args=list(bg=&quot;transparent&quot;))</code></pre>
+<div id="introduction" class="section level1">
+<h1>Introduction</h1>
+<div id="food-security" class="section level2">
+<h2>Food Security</h2>
+<pre class="r"><code>load(&quot;intermediate_data/food_security_county.rda&quot;)
 
+this_title &lt;- &quot;Food Insecurity&quot;
+this_caption &lt;- &quot;\nSource: Greater Louisville Project
+    Data from Feeding America&#39;s annual Map the Meal Gap study, 2021
+    Note: These are projections and could change in subsequent years.&quot;
+this_caption_trend_graphs &lt;- &quot;\nSource: Greater Louisville Project
+    Data from Feeding America&#39;s annual Map the Meal Gap study
+Note: 2020 and 2021 rely on projected data. They could change in subsequent years.&quot;
+
+png(&quot;images/food_security_ranking.png&quot;, 3000, 2400, res = 200, bg = &quot;transparent&quot;, type = &quot;cairo&quot;)
+glptools::ranking(
+  food_security_county,
+  food_insecurity,
+  year = 2021,
+  peers = &quot;Current&quot;,
+  order = &quot;Ascending&quot;,
+  y_title = &quot;Percent experiencing food insecurity&quot;,
+  plot_title = this_title %p% &quot;, 2021&quot;,
+  caption_text = this_caption,
+  bar_label = TRUE,
+  sigfig = 3,
+  accuracy = 0.1,
+  alternate_text = NULL,
+  ranking_colors = TRUE)
+invisible(dev.off())</code></pre>
+</div>
+</div>
 
 
 

@@ -8,3 +8,51 @@ output:
     code_folding: hide
 knit: (function(inputFile, encoding) { rmarkdown::render(inputFile, encoding = encoding, output_file = file.path(dirname(inputFile), 'index.html')) })
 ---
+
+```{r setup, message=FALSE, warning=FALSE}
+library(glptools)
+library(glpdata)
+glp_load_packages(graphs = T)
+showtext_auto()
+font_add("Museo Sans", "MuseoSans_300.otf")
+font_add("Museo Sans 300 Italic", "MuseoSans_300_Italic.otf")
+knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE, 
+                      dev.args=list(bg="transparent"))
+
+```
+
+# Introduction
+
+## Food Security
+
+```{r}
+load("intermediate_data/food_security_county.rda")
+
+this_title <- "Food Insecurity"
+this_caption <- "\nSource: Greater Louisville Project
+    Data from Feeding America's annual Map the Meal Gap study, 2021
+    Note: These are projections and could change in subsequent years."
+this_caption_trend_graphs <- "\nSource: Greater Louisville Project
+    Data from Feeding America's annual Map the Meal Gap study
+Note: 2020 and 2021 rely on projected data. They could change in subsequent years."
+
+png("images/food_security_ranking.png", 3000, 2400, res = 200, bg = "transparent", type = "cairo")
+glptools::ranking(
+  food_security_county,
+  food_insecurity,
+  year = 2021,
+  peers = "Current",
+  order = "Ascending",
+  y_title = "Percent experiencing food insecurity",
+  plot_title = this_title %p% ", 2021",
+  caption_text = this_caption,
+  bar_label = TRUE,
+  sigfig = 3,
+  accuracy = 0.1,
+  alternate_text = NULL,
+  ranking_colors = TRUE)
+invisible(dev.off())
+```
+
+
