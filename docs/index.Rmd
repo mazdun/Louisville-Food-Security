@@ -92,3 +92,61 @@ glptools::trend_maxmin(
   plot_title = this_title,
   caption_text = this_caption_trend_graphs)
 ```
+
+**Explanation here about how Louisville is seeing much higher rates of food insecurity among children.**
+
+## Child Food Insecurity {.tabset}
+
+### Ranking
+```{r child food insecurity ranking}
+this_title_child <- "Child Food Insecurity"
+this_caption_child <- "\n\nData from Feeding America's annual Map the Meal Gap study, 2021"
+this_caption_trend_graphs_child <- "\n\nData from Feeding America's annual Map the Meal Gap study"
+
+glptools::ranking(
+  food_security_county,
+  child_food_insecurity,
+  year = 2021,
+  peers = "Current",
+  order = "Ascending",
+  y_title = "Percent of children experiencing food insecurity",
+  plot_title = this_title_child %p% ", 2021",
+  caption_text = this_caption_child,
+  bar_label = TRUE,
+  sigfig = 3,
+  accuracy = 0.1,
+  alternate_text = NULL,
+  ranking_colors = TRUE)
+```
+
+### Trend
+```{r child food insecurity trend}
+this_title_child <- "Child Food Insecurity"
+this_caption_child <- "\n\nData from Feeding America's annual Map the Meal Gap study, 2021"
+this_caption_trend_graphs_child <- "\n\nData from Feeding America's annual Map the Meal Gap study"
+
+glptools::trend(
+  food_security_county,
+  child_food_insecurity,
+  rollmean = 3,
+  plot_title = this_title_child,
+  caption_text = this_caption_trend_graphs_child,
+  y_title = "Percent")
+```
+
+### Best and Worst Performers
+```{r child food insecurity best and worst, results='hide'}
+this_title_child <- "Child Food Insecurity"
+this_caption_child <- "\n\nData from Feeding America's annual Map the Meal Gap study, 2021"
+this_caption_trend_graphs_child <- "\n\nData from Feeding America's annual Map the Meal Gap study"
+
+glptools::trend_maxmin(
+  food_security_county,
+  child_food_insecurity,
+  zero_start = T,
+  rollmean = 3,
+  order='Ascending',
+  y_title = "Percentage points change",
+  plot_title = this_title_child,
+  caption_text = this_caption_trend_graphs_child)
+```

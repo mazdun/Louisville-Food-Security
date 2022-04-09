@@ -332,6 +332,64 @@ glptools::trend_maxmin(
   plot_title = this_title,
   caption_text = this_caption_trend_graphs)</code></pre>
 <p><img src="index_files/figure-html/food%20insecurity%20best%20and%20worst-1.png" width="2880" /></p>
+<p><strong>Explanation here about how Louisville is seeing much higher rates of food insecurity among children.</strong></p>
+</div>
+</div>
+<div id="child-food-insecurity" class="section level2 tabset">
+<h2 class="tabset">Child Food Insecurity</h2>
+<div id="ranking-1" class="section level3">
+<h3>Ranking</h3>
+<pre class="r"><code>this_title_child &lt;- &quot;Child Food Insecurity&quot;
+this_caption_child &lt;- &quot;\n\nData from Feeding America&#39;s annual Map the Meal Gap study, 2021&quot;
+this_caption_trend_graphs_child &lt;- &quot;\n\nData from Feeding America&#39;s annual Map the Meal Gap study&quot;
+
+glptools::ranking(
+  food_security_county,
+  child_food_insecurity,
+  year = 2021,
+  peers = &quot;Current&quot;,
+  order = &quot;Ascending&quot;,
+  y_title = &quot;Percent of children experiencing food insecurity&quot;,
+  plot_title = this_title_child %p% &quot;, 2021&quot;,
+  caption_text = this_caption_child,
+  bar_label = TRUE,
+  sigfig = 3,
+  accuracy = 0.1,
+  alternate_text = NULL,
+  ranking_colors = TRUE)</code></pre>
+<p><img src="index_files/figure-html/child%20food%20insecurity%20ranking-1.png" width="2880" /></p>
+</div>
+<div id="trend-1" class="section level3">
+<h3>Trend</h3>
+<pre class="r"><code>this_title_child &lt;- &quot;Child Food Insecurity&quot;
+this_caption_child &lt;- &quot;\n\nData from Feeding America&#39;s annual Map the Meal Gap study, 2021&quot;
+this_caption_trend_graphs_child &lt;- &quot;\n\nData from Feeding America&#39;s annual Map the Meal Gap study&quot;
+
+glptools::trend(
+  food_security_county,
+  child_food_insecurity,
+  rollmean = 3,
+  plot_title = this_title_child,
+  caption_text = this_caption_trend_graphs_child,
+  y_title = &quot;Percent&quot;)</code></pre>
+<p><img src="index_files/figure-html/child%20food%20insecurity%20trend-1.png" width="2880" /></p>
+</div>
+<div id="best-and-worst-performers-1" class="section level3">
+<h3>Best and Worst Performers</h3>
+<pre class="r"><code>this_title_child &lt;- &quot;Child Food Insecurity&quot;
+this_caption_child &lt;- &quot;\n\nData from Feeding America&#39;s annual Map the Meal Gap study, 2021&quot;
+this_caption_trend_graphs_child &lt;- &quot;\n\nData from Feeding America&#39;s annual Map the Meal Gap study&quot;
+
+glptools::trend_maxmin(
+  food_security_county,
+  child_food_insecurity,
+  zero_start = T,
+  rollmean = 3,
+  order=&#39;Ascending&#39;,
+  y_title = &quot;Percentage points change&quot;,
+  plot_title = this_title_child,
+  caption_text = this_caption_trend_graphs_child)</code></pre>
+<p><img src="index_files/figure-html/child%20food%20insecurity%20best%20and%20worst-1.png" width="2880" /></p>
 </div>
 </div>
 
