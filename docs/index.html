@@ -256,13 +256,13 @@ div.tocify {
 </div>
 
 
-<p>Measuring food insecurity accurately and completely is challenging because it touches on a number of difficult-to-measure factors like poverty, unemployment, median income, disability status and many other factors. Furthermore, those who are considered food insecure at one point might not be food insecure at other points in the year. Often, individuals must make difficult trade off decisions between paying housing or medical bills and buying nutritious food.</p>
-<p>However, gaining a clear understanding of a community’s food environment is essential to boosting that community’s social, health and economic health.</p>
-<p>We will look at three broad categories to gain a deeper understanding of the food ecosystem in Louisville and its peer cities:</p>
+<p>Measuring food insecurity accurately and completely is challenging because it overlaps with a number of difficult-to-measure factors, like poverty, unemployment, median income, disability status and others. Furthermore, those who are considered food insecure at one point in time might not be food insecure at other times. Often, individuals must make difficult (and ongoing) trade off decisions between paying housing or medical bills and buying nutritious food.</p>
+<p>However, gaining a clear understanding of a community’s food ecosystem is essential to boosting its social and economic health.</p>
+<p>Here are three broad categories to gain a deeper understanding of the food ecosystem in Louisville and its peer cities:</p>
 <ul>
-<li><strong>Food Insecurity</strong> (percentage of the population who did not have reliable access to food over the past year)</li>
-<li><strong>Food Access</strong> (percentage of the population who had some barrier to accessing food over the past year — income constraints, limited vehicle access, etc.)</li>
-<li><strong>Food Environment</strong> (concentration of places to buy healthy food in Louisville and its peer cities)</li>
+<li><strong>Food Insecurity:</strong> percentage of the population who did not have reliable access to food over the past year</li>
+<li><strong>Food Access:</strong> percentage of the population who had some barrier to accessing food over the past year — income constraints, limited vehicle access, etc.</li>
+<li><strong>Food Environment:</strong> overview of various places to buy food in Louisville and its peer cities</li>
 </ul>
 <pre class="r"><code>library(glptools)
 library(glpdata)
@@ -275,8 +275,12 @@ knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE,
                       dev.args=list(bg=&quot;transparent&quot;), fig.width=30, fig.height=24)</code></pre>
 <div id="food-insecurity" class="section level2 tabset">
 <h2 class="tabset">Food Insecurity</h2>
+<p>The food insecurity metric estimates how much of the population did not have reliable access to food during the past year. Those without reliable access to food tend to disproportionately suffer from diabetes and high blood pressure, among other negative health outcomes, according to Feeding America.</p>
+<p><strong>How Louisville’s Currently Doing:</strong> Nearly 13% of Louisville’s population experienced food insecurity last year. That’s better than most of Louisville’s peers.<br />
+<strong>How Louisville’s Performed Over Time:</strong> For much of the last decade, Louisville had largely been moving in tandem with its peers. Around 2018, it saw sharp decreases in its food insecurity rate. Louisville appears to have sustained those decreases during the pandemic, according to Feeding America projections.</p>
 <div id="ranking" class="section level3">
 <h3>Ranking</h3>
+<p><em>Note: 2020 and 2021 data are projections from Feeding America and could change in subsequent years.</em></p>
 <pre class="r"><code>load(&quot;intermediate_data/food_security_county.rda&quot;)
 
 this_title &lt;- &quot;Food Insecurity&quot;
