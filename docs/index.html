@@ -273,13 +273,16 @@ font_add(&quot;Museo Sans 300 Italic&quot;, &quot;MuseoSans_300_Italic.otf&quot;
 knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
 knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE, 
                       dev.args=list(bg=&quot;transparent&quot;), fig.width=30, fig.height=24)</code></pre>
-<div id="food-insecurity" class="section level2 tabset">
-<h2 class="tabset">Food Insecurity</h2>
+<div id="food-insecurity" class="section level1 tabset">
+<h1 class="tabset">Food Insecurity</h1>
 <p>The food insecurity metric estimates how much of the population did not have reliable access to food during the past year. Those without reliable access to food tend to disproportionately suffer from diabetes and high blood pressure, among other negative health outcomes, according to Feeding America.</p>
-<p><strong>How Louisville’s Currently Doing:</strong> Nearly 13% of Louisville’s population experienced food insecurity last year. That’s better than most of Louisville’s peers.<br />
-<strong>How Louisville’s Performed Over Time:</strong> For much of the last decade, Louisville had largely been moving in tandem with its peers. Around 2018, it saw sharp decreases in its food insecurity rate. Louisville appears to have sustained those decreases during the pandemic, according to Feeding America projections.</p>
-<div id="ranking" class="section level3">
-<h3>Ranking</h3>
+<ul>
+<li><strong>How Louisville’s Currently Doing:</strong> Nearly 13% of Louisville’s population experienced food insecurity last year. That’s better than most of Louisville’s peers.<br />
+</li>
+<li><strong>How Louisville’s Performed Over Time:</strong> For much of the last decade, Louisville had largely been moving in tandem with its peers. Around 2018, it saw sharp decreases in its food insecurity rate. The city appears to have sustained those decreases during the pandemic, according to Feeding America projections.</li>
+</ul>
+<div id="ranking" class="section level2">
+<h2>Ranking</h2>
 <p><em>Note: 2020 and 2021 data are projections from Feeding America and could change in subsequent years.</em></p>
 <pre class="r"><code>load(&quot;intermediate_data/food_security_county.rda&quot;)
 
@@ -303,8 +306,8 @@ glptools::ranking(
   ranking_colors = TRUE)</code></pre>
 <p><img src="index_files/figure-html/food%20insecurity%20ranking-1.png" width="2880" /></p>
 </div>
-<div id="trend" class="section level3">
-<h3>Trend</h3>
+<div id="trend" class="section level2">
+<h2>Trend</h2>
 <pre class="r"><code>this_title &lt;- &quot;Food Insecurity&quot;
 this_caption &lt;- &quot;\n\nData from Feeding America&#39;s annual Map the Meal Gap study, 2021&quot;
 this_caption_trend_graphs &lt;- &quot;\n\nData from Feeding America&#39;s annual Map the Meal Gap study&quot;
@@ -319,8 +322,8 @@ glptools::trend(
   y_title = &quot;Percent&quot;)</code></pre>
 <p><img src="index_files/figure-html/food%20insecurity%20trend-1.png" width="2880" /></p>
 </div>
-<div id="best-and-worst-performers" class="section level3">
-<h3>Best and Worst Performers</h3>
+<div id="best-and-worst-performers" class="section level2">
+<h2>Best and Worst Performers</h2>
 <pre class="r"><code>this_title &lt;- &quot;Food Insecurity&quot;
 this_caption &lt;- &quot;\n\nData from Feeding America&#39;s annual Map the Meal Gap study, 2021&quot;
 this_caption_trend_graphs &lt;- &quot;\n\nData from Feeding America&#39;s annual Map the Meal Gap study&quot;
@@ -336,13 +339,19 @@ glptools::trend_maxmin(
   plot_title = this_title,
   caption_text = this_caption_trend_graphs)</code></pre>
 <p><img src="index_files/figure-html/food%20insecurity%20best%20and%20worst-1.png" width="2880" /></p>
-<p><strong>Explanation here about how Louisville is seeing much higher rates of food insecurity among children.</strong></p>
+<p>On the other hand, the food insecurity rate among children is significantly higher. Unlike the overall food insecurity rate, the child food insecurity rate has actually worsened in recent years.</p>
 </div>
 </div>
-<div id="child-food-insecurity" class="section level2 tabset">
-<h2 class="tabset">Child Food Insecurity</h2>
-<div id="ranking-1" class="section level3">
-<h3>Ranking</h3>
+<div id="child-food-insecurity" class="section level1 tabset">
+<h1 class="tabset">Child Food Insecurity</h1>
+<p>Food insecurity among children can be particularly devastating. It can lead to delayed development in young children and increase the risk of asthma, anemia, hyperactivity, anxiety and aggression in school-aged children, according to Feeding America.</p>
+<ul>
+<li><strong>How Louisville’s Currently Doing:</strong> Louisville currently ranks 9th in child food insecurity, with nearly 1 in 5 children experiencing food insecurity in the last year.</li>
+<li><strong>How Louisville’s Performed Over Time:</strong> Around 2018, the child food insecurity rate rose dramatically in Louisville. Before that, it had been holding steady. Indianapolis is the worst performer of the bunch, with its child food insecurity rate rising 0.2 percentage points since 2014. Louisville is not far behind, having seen only a modest 0.4 percentage point decrease in its rate over the same time period.</li>
+</ul>
+<div id="ranking-1" class="section level2">
+<h2>Ranking</h2>
+<p><em>Note: 2020 and 2021 data are projections from Feeding America and could change in subsequent years.</em></p>
 <pre class="r"><code>this_title_child &lt;- &quot;Child Food Insecurity&quot;
 this_caption_child &lt;- &quot;\n\nData from Feeding America&#39;s annual Map the Meal Gap study, 2021&quot;
 this_caption_trend_graphs_child &lt;- &quot;\n\nData from Feeding America&#39;s annual Map the Meal Gap study&quot;
@@ -363,8 +372,8 @@ glptools::ranking(
   ranking_colors = TRUE)</code></pre>
 <p><img src="index_files/figure-html/child%20food%20insecurity%20ranking-1.png" width="2880" /></p>
 </div>
-<div id="trend-1" class="section level3">
-<h3>Trend</h3>
+<div id="trend-1" class="section level2">
+<h2>Trend</h2>
 <pre class="r"><code>this_title_child &lt;- &quot;Child Food Insecurity&quot;
 this_caption_child &lt;- &quot;\n\nData from Feeding America&#39;s annual Map the Meal Gap study, 2021&quot;
 this_caption_trend_graphs_child &lt;- &quot;\n\nData from Feeding America&#39;s annual Map the Meal Gap study&quot;
@@ -378,8 +387,8 @@ glptools::trend(
   y_title = &quot;Percent&quot;)</code></pre>
 <p><img src="index_files/figure-html/child%20food%20insecurity%20trend-1.png" width="2880" /></p>
 </div>
-<div id="best-and-worst-performers-1" class="section level3">
-<h3>Best and Worst Performers</h3>
+<div id="best-and-worst-performers-1" class="section level2">
+<h2>Best and Worst Performers</h2>
 <pre class="r"><code>this_title_child &lt;- &quot;Child Food Insecurity&quot;
 this_caption_child &lt;- &quot;\n\nData from Feeding America&#39;s annual Map the Meal Gap study, 2021&quot;
 this_caption_trend_graphs_child &lt;- &quot;\n\nData from Feeding America&#39;s annual Map the Meal Gap study&quot;
@@ -395,6 +404,372 @@ glptools::trend_maxmin(
   caption_text = this_caption_trend_graphs_child)</code></pre>
 <p><img src="index_files/figure-html/child%20food%20insecurity%20best%20and%20worst-1.png" width="2880" /></p>
 </div>
+</div>
+<div id="food-access" class="section level1">
+<h1>Food Access</h1>
+<p>Now, here’s a closer look at the food ecosystem in Louisville: the percentage of the population that is considered low-income and far from a grocery store, the percentage that does not have a vehicle and is far from a grocery store and the percentage that relies on certain food benefits and is far from a grocery store.</p>
+<div id="limited-access-to-grocery-stores" class="section level2 tabset">
+<h2 class="tabset">Limited Access to Grocery Stores</h2>
+<p>When looking at the food ecosystem, it’s important to consider not only those who live far from grocery stores but also those who live far from a grocery store <em>and</em> those who live on a low income.</p>
+<ul>
+<li><strong>How Louisville’s Currently Doing:</strong> Louisville currently ranks 7th on this metric, with about 6% of residents living with low incomes and far from grocery stores. That’s about half the rate of Louisville’s currently worst performing peer city, Birmingham.</li>
+<li><strong>How Louisville’s Performed Over Time:</strong> Louisville has seen its numbers getting worse over the past five years of most recent data. Generally, over the same time period, Louisville’s peers have been improving.</li>
+</ul>
+<p>In terms of <strong>race</strong>, more than a quarter of White residents in Louisville have limited access to grocery stores, vs. 17.8% of Black residents and 15.6% of Hispanic residents. The numbers are significantly higher in Louisville’s peer cities. However, it’s important to note that this race data considers the <em>entire</em> population that is far from a grocery store (not just those living with low incomes). Therefore, the race data includes a percentage of the population that lives on a higher income and therefore can afford to drive greater distances to a grocery store.</p>
+<div id="ranking-2" class="section level3">
+<h3>Ranking</h3>
+<p><em>In rural communities, far from a grocery store means more than 10 miles; in non-rural areas, it’s more than 1 mile. The race data considers the entire population (not just those with low incomes) who live more than 10 miles from a grocery store.</em></p>
+<pre class="r"><code>load(&quot;intermediate_data/food_access_county.rda&quot;)
+
+this_title &lt;- &quot;Limted Access to Grocery Stores&quot;
+this_subtitle &lt;- &quot;People with low incomes who live far from grocery stores&quot;
+this_caption &lt;- &quot;\n\nData from the USDA&#39;s Food Access Research Atlas, 2019&quot;
+this_caption_trend_graphs &lt;- &quot;\n\nData from the USDA&#39;s Food Access Research Atlas&quot;
+
+glptools::ranking(
+  food_access_county,
+  low_access_percent,
+  year = 2019,
+  peers = &quot;Current&quot;,
+  order = &quot;Ascending&quot;,
+  y_title = &quot;Percent&quot;,
+  plot_title = this_title %p% &quot;, 2019&quot;,
+  subtitle = this_subtitle,
+  caption_text = this_caption,
+  bar_label = TRUE,
+  sigfig = 3,
+  accuracy = 0.1,
+  alternate_text = NULL,
+  ranking_colors = TRUE)</code></pre>
+<p><img src="index_files/figure-html/food%20access%20ranking-1.png" width="2880" /></p>
+</div>
+<div id="trend-2" class="section level3">
+<h3>Trend</h3>
+<pre class="r"><code>this_title &lt;- &quot;Limted Access to Grocery Stores&quot;
+this_subtitle &lt;- &quot;People with low incomes who live far from grocery stores&quot;
+this_caption &lt;- &quot;\n\nData from the USDA&#39;s Food Access Research Atlas, 2019&quot;
+this_caption_trend_graphs &lt;- &quot;\n\nData from the USDA&#39;s Food Access Research Atlas&quot;
+
+glptools::trend(
+  food_access_county,
+  low_access_percent,
+  plot_title = this_title,
+  subtitle = this_subtitle,
+  caption_text = this_caption_trend_graphs,
+  y_title = &quot;Percent&quot;)</code></pre>
+<p><img src="index_files/figure-html/food%20access%20trend-1.png" width="2880" /></p>
+</div>
+<div id="best-and-worst-performers-2" class="section level3">
+<h3>Best and Worst Performers</h3>
+<pre class="r"><code>this_title &lt;- &quot;Limted Access to Grocery Stores&quot;
+this_subtitle &lt;- &quot;People with low incomes who live far from grocery stores&quot;
+this_caption &lt;- &quot;\n\nData from the USDA&#39;s Food Access Research Atlas, 2019&quot;
+this_caption_trend_graphs &lt;- &quot;\n\nData from the USDA&#39;s Food Access Research Atlas&quot;
+
+glptools::trend_maxmin(
+  food_access_county,
+  low_access_percent,
+  zero_start = T,
+  order=&#39;Ascending&#39;,
+  y_title = &quot;Percentage points change&quot;,
+  plot_title = this_title,
+  subtitle = this_subtitle,
+  caption_text = this_caption_trend_graphs)</code></pre>
+<p><img src="index_files/figure-html/food%20access%20best%20and%20worse-1.png" width="2880" /></p>
+</div>
+<div id="race" class="section level3">
+<h3>Race</h3>
+<pre class="r"><code>load(&quot;intermediate_data/food_access_race_county.rda&quot;)
+
+this_title &lt;- &quot;Limted Access to Grocery Stores by Race&quot;
+this_caption_trend_graphs &lt;- &quot;\n\nData from the USDA&#39;s Food Access Research Atlas&quot;
+
+glptools::trend(
+  food_access_race_county,
+  percent_more_than_10_miles_grocery,
+  cat = &#39;race&#39;,
+  pctiles = F,
+  plot_title = this_title, 
+  caption_text = this_caption_trend_graphs,
+  y_title = &quot;Percent&quot;)</code></pre>
+<p><img src="index_files/figure-html/food%20access%20by%20race-1.png" width="2880" /></p>
+</div>
+</div>
+<div id="limited-access-to-grocery-stores-and-no-vehicle" class="section level2 tabset">
+<h2 class="tabset">Limited Access to Grocery Stores and No Vehicle</h2>
+<p>It becomes significantly more challenging to access nutritious food at a grocery store if a household lives far from a grocery store and does not have access to a vehicle. These households often must rely on public transportation or other transportation methods or shop at stores that are closer to them that also potentially have less nutritious food.</p>
+<ul>
+<li><strong>How Louisville’s Currently Doing:</strong> More than 2% of Louisville’s population lives more than a mile from a grocery store and does not have a vehicle. That puts it in the bottom half of its peer cohort.</li>
+<li><strong>How Louisville’s Performed Over Time:</strong> Over the last five years of most recent data, Louisville has more than doubled this rate. That makes it the worst performer of its peers.</li>
+</ul>
+<div id="ranking-3" class="section level3">
+<h3>Ranking</h3>
+<pre class="r"><code>load(&quot;intermediate_data/food_access_no_vehicle_county.rda&quot;)
+
+this_title &lt;- &quot;Households without Vehicles&quot;
+this_subtitle &lt;- &quot;That are also located more than 1 mile from a grocery store&quot;
+this_caption &lt;- &quot;\n\nData from the USDA&#39;s Food Access Research Atlas, 2019&quot;
+this_caption_trend_graphs &lt;- &quot;\n\nData from the USDA&#39;s Food Access Research Atlas&quot;
+
+glptools::ranking(
+  food_access_no_vehicle_county,
+  percent_households_no_vehicle_low_access,
+  year = 2019,
+  peers = &quot;Current&quot;,
+  order = &quot;Ascending&quot;,
+  y_title = &quot;Percent&quot;,
+  plot_title = this_title %p% &quot;, 2019&quot;,
+  subtitle = this_subtitle,
+  caption_text = this_caption,
+  bar_label = TRUE,
+  sigfig = 3,
+  accuracy = 0.1,
+  alternate_text = NULL,
+  ranking_colors = TRUE)</code></pre>
+<p><img src="index_files/figure-html/food%20access%20no%20vehicle%20ranking-1.png" width="2880" /></p>
+</div>
+<div id="trend-3" class="section level3">
+<h3>Trend</h3>
+<pre class="r"><code>this_title &lt;- &quot;Households without Vehicles&quot;
+this_subtitle &lt;- &quot;That are also located more than 1 mile from a grocery store&quot;
+this_caption &lt;- &quot;\n\nData from the USDA&#39;s Food Access Research Atlas, 2019&quot;
+this_caption_trend_graphs &lt;- &quot;\n\nData from the USDA&#39;s Food Access Research Atlas&quot;
+
+glptools::trend(
+  food_access_no_vehicle_county,
+  percent_households_no_vehicle_low_access,
+  plot_title = this_title,
+  subtitle = this_subtitle,
+  caption_text = this_caption_trend_graphs,
+  y_title = &quot;Percent&quot;)</code></pre>
+<p><img src="index_files/figure-html/food%20access%20no%20vehicle%20trend-1.png" width="2880" /></p>
+</div>
+<div id="best-and-worst-performers-3" class="section level3">
+<h3>Best and Worst Performers</h3>
+<pre class="r"><code>this_title &lt;- &quot;Households without Vehicles&quot;
+this_subtitle &lt;- &quot;That are also located more than 1 mile from a grocery store&quot;
+this_caption &lt;- &quot;\n\nData from the USDA&#39;s Food Access Research Atlas, 2019&quot;
+this_caption_trend_graphs &lt;- &quot;\n\nData from the USDA&#39;s Food Access Research Atlas&quot;
+
+glptools::trend_maxmin(
+  food_access_no_vehicle_county,
+  percent_households_no_vehicle_low_access,
+  zero_start = T,
+  order=&#39;Ascending&#39;,
+  y_title = &quot;Percentage points change&quot;,
+  plot_title = this_title,
+  subtitle = this_subtitle,
+  caption_text = this_caption_trend_graphs)</code></pre>
+<p><img src="index_files/figure-html/food%20access%20no%20vehicle%20best%20and%20worse-1.png" width="2880" /></p>
+</div>
+</div>
+<div id="limited-access-to-grocery-stores-and-receiving-snap-benefits" class="section level2 tabset">
+<h2 class="tabset">Limited Access to Grocery Stores and Receiving SNAP Benefits</h2>
+<p>These are the households that live far from a grocery store and receive benefits from the Supplemental Nutrition Assistance Program (SNAP) program.</p>
+<ul>
+<li><strong>How Louisville’s Currently Doing:</strong> 2.6% of Louisville’s households receive SNAP benefits and live more than a mile from a grocery store. That puts the city in the top half of its peers.<br />
+</li>
+<li><strong>How Louisville’s Performed Over Time:</strong> Louisville’s rate has increased (though only modestly) over the past five years in which data is available. However, its peer cities have seen their rates decrease. That makes Louisville the worst performer of its peers.</li>
+</ul>
+<div id="ranking-4" class="section level3">
+<h3>Ranking</h3>
+<pre class="r"><code>load(&quot;intermediate_data/food_access_snap_county.rda&quot;)
+
+this_title &lt;- &quot;SNAP Households&quot;
+this_subtitle &lt;- &quot;That are also located more than 1 mile from a grocery store&quot;
+this_title_trend_graphs &lt;- &quot;Households that Receive SNAP Benefits&quot;
+this_subtitle_trend_graphs &lt;- &quot;and are more than 1 mile from a grocery store&quot;
+this_caption &lt;- &quot;\n\nData from the USDA&#39;s Food Access Research Atlas, 2019&quot;
+this_caption_trend_graphs &lt;- &quot;\n\nData from the USDA&#39;s Food Access Research Atlas&quot;
+
+glptools::ranking(
+  food_access_snap_county,
+  percent_households_snap_low_access,
+  year = 2019,
+  peers = &quot;Current&quot;,
+  order = &quot;Ascending&quot;,
+  y_title = &quot;Percent&quot;,
+  plot_title = this_title %p% &quot;, 2019&quot;,
+  subtitle = this_subtitle,
+  caption_text = this_caption,
+  bar_label = TRUE,
+  sigfig = 3,
+  accuracy = 0.1,
+  alternate_text = NULL,
+  ranking_colors = TRUE)</code></pre>
+<p><img src="index_files/figure-html/food%20access%20SNAP%20ranking-1.png" width="2880" /></p>
+</div>
+<div id="trend-4" class="section level3">
+<h3>Trend</h3>
+<pre class="r"><code>this_title &lt;- &quot;SNAP Households&quot;
+this_subtitle &lt;- &quot;That are also located more than 1 mile from a grocery store&quot;
+this_title_trend_graphs &lt;- &quot;Households that Receive SNAP Benefits&quot;
+this_subtitle_trend_graphs &lt;- &quot;and are more than 1 mile from a grocery store&quot;
+this_caption &lt;- &quot;\n\nData from the USDA&#39;s Food Access Research Atlas, 2019&quot;
+this_caption_trend_graphs &lt;- &quot;\n\nData from the USDA&#39;s Food Access Research Atlas&quot;
+
+glptools::trend(
+  food_access_snap_county,
+  percent_households_snap_low_access,
+  plot_title = this_title_trend_graphs,
+  subtitle = this_subtitle_trend_graphs,
+  caption_text = this_caption_trend_graphs,
+  y_title = &quot;Percent&quot;)</code></pre>
+<p><img src="index_files/figure-html/food%20access%20SNAP%20trend-1.png" width="2880" /></p>
+</div>
+<div id="best-and-worst-performers-4" class="section level3">
+<h3>Best and Worst Performers</h3>
+<pre class="r"><code>this_title &lt;- &quot;SNAP Households&quot;
+this_subtitle &lt;- &quot;That are also located more than 1 mile from a grocery store&quot;
+this_title_trend_graphs &lt;- &quot;Households that Receive SNAP Benefits&quot;
+this_subtitle_trend_graphs &lt;- &quot;and are more than 1 mile from a grocery store&quot;
+this_caption &lt;- &quot;\n\nData from the USDA&#39;s Food Access Research Atlas, 2019&quot;
+this_caption_trend_graphs &lt;- &quot;\n\nData from the USDA&#39;s Food Access Research Atlas&quot;
+
+glptools::trend_maxmin(
+  food_access_snap_county,
+  percent_households_snap_low_access,
+  zero_start = T,
+  order=&#39;Ascending&#39;,
+  y_title = &quot;Percentage points change&quot;,
+  plot_title = this_title_trend_graphs,
+  subtitle = this_subtitle_trend_graphs,
+  caption_text = this_caption_trend_graphs)</code></pre>
+<p><img src="index_files/figure-html/food%20access%20SNAP%20best%20and%20worse-1.png" width="2880" /></p>
+</div>
+</div>
+</div>
+<div id="food-environment" class="section level1">
+<h1>Food Environment</h1>
+<p>What does the food environment look like in Louisville? Here’s a breakdown of the number of grocery stores, convenience stores, fast food restaurants and farmers markets per 100,000 people.</p>
+<div id="food-sources" class="section level2 tabset">
+<h2 class="tabset">Food Sources</h2>
+<p>The number of grocery stores and fast food restaurants have remained relatively constant since 2008. Even so, Louisville currently has more grocery stores per 100,000 people than its peer cities, on average. The number of convenience stores in Louisville and its peer cities has decreased.</p>
+<div id="grocery-convenience-and-fast-food" class="section level3">
+<h3>Grocery, Convenience and Fast Food</h3>
+<pre class="r"><code>load(&quot;intermediate_data/food_environment_county.rda&quot;)
+
+this_title &lt;- &quot;Louisville Food Sources&quot;
+this_subtitle &lt;- &quot;Per 100,000 people&quot;
+this_caption_trend_graphs &lt;- &quot;\n\nData from the USDA&#39;s Food Access Research Atlas&quot;
+
+glptools::trend(
+  food_environment_county, c(grocery_stores_per_100000, convenience_stores_per_100000, fast_food_per_100000),
+  cat = c(&quot;Grocery Stores&quot; = &quot;grocery_stores_per_100000&quot;, &quot;Convenience Stores&quot; = &quot;convenience_stores_per_100000&quot;, &quot;Fast Food Restaurants&quot; = &quot;fast_food_per_100000&quot;),
+  pctiles=F,
+  plot_title = this_title,
+  subtitle = this_subtitle,
+  caption_text = this_caption_trend_graphs,
+  y_title = &quot;Number of Stores&quot;)</code></pre>
+<p><img src="index_files/figure-html/food%20environment%20trend-1.png" width="2880" /></p>
+</div>
+<div id="farmers-markets" class="section level3">
+<h3>Farmers Markets</h3>
+<pre class="r"><code>this_title &lt;- &quot;Farmers Markets&quot;
+this_subtitle &lt;- &quot;Per 100,000 people&quot;
+this_caption_trend_graphs &lt;- &quot;\n\nData from the USDA&#39;s Food Access Research Atlas&quot;
+
+glptools::trend(
+  food_environment_county, 
+  farmers_markets_per_100000,
+  pctiles=F,
+  plot_title = this_title,
+  subtitle = this_subtitle,
+  caption_text = this_caption_trend_graphs,
+  y_title = &quot;Number of Locations&quot;)</code></pre>
+<p><img src="index_files/figure-html/farmers%20markets%20trend-1.png" width="2880" /></p>
+</div>
+<div id="grocery-ranking" class="section level3">
+<h3>Grocery Ranking</h3>
+<pre class="r"><code>glptools::ranking(
+  food_environment_county,
+  grocery_stores_per_100000,
+  year = 2016,
+  peers = &quot;Current&quot;,
+  order = &quot;Descending&quot;,
+  y_title = &quot;Grocery stores per 100,000 people&quot;,
+  plot_title = &quot;Grocery Stores, 2016&quot;,
+  caption_text = &quot;\n\nData from the USDA&#39;s Food Access Research Atlas, 2016&quot;,
+  bar_label = TRUE,
+  sigfig = 3,
+  accuracy = 0.1,
+  alternate_text = NULL,
+  ranking_colors = FALSE)</code></pre>
+<p><img src="index_files/figure-html/grocery%20ranking-1.png" width="2880" /></p>
+</div>
+<div id="convenience-ranking" class="section level3">
+<h3>Convenience Ranking</h3>
+<pre class="r"><code>glptools::ranking(
+  food_environment_county,
+  convenience_stores_per_100000,
+  year = 2016,
+  peers = &quot;Current&quot;,
+  order = &quot;Ascending&quot;,
+  y_title = &quot;Convenience stores per 100,000 people&quot;,
+  plot_title = &quot;Convenience Stores, 2016&quot;,
+  caption_text = &quot;\n\nData from the USDA&#39;s Food Access Research Atlas, 2016&quot;,
+  bar_label = TRUE,
+  sigfig = 3,
+  accuracy = 0.1,
+  alternate_text = NULL,
+  ranking_colors = FALSE)</code></pre>
+<p><img src="index_files/figure-html/convenience%20ranking-1.png" width="2880" /></p>
+</div>
+<div id="fast-food-ranking" class="section level3">
+<h3>Fast Food Ranking</h3>
+<pre class="r"><code>glptools::ranking(
+  food_environment_county,
+  fast_food_per_100000,
+  year = 2016,
+  peers = &quot;Current&quot;,
+  order = &quot;Ascending&quot;,
+  y_title = &quot;Fast food restaurants per 100,000 people&quot;,
+  plot_title = &quot;Fast Food Restaurants, 2016&quot;,
+  caption_text = &quot;\n\nData from the USDA&#39;s Food Access Research Atlas, 2016&quot;,
+  bar_label = TRUE,
+  sigfig = 3,
+  accuracy = 0.1,
+  alternate_text = NULL,
+  ranking_colors = FALSE)</code></pre>
+<p><img src="index_files/figure-html/fast%20food%20ranking-1.png" width="2880" /></p>
+</div>
+<div id="farmers-market-ranking" class="section level3">
+<h3>Farmers Market Ranking</h3>
+<pre class="r"><code>glptools::ranking(
+  food_environment_county,
+  farmers_markets_per_100000,
+  year = 2018,
+  peers = &quot;Current&quot;,
+  order = &quot;Descending&quot;,
+  y_title = &quot;Farmers markets per 100,000 people&quot;,
+  plot_title = &quot;Farmers Markets, 2018&quot;,
+  caption_text = &quot;\n\nData from the USDA&#39;s Food Access Research Atlas, 2018&quot;,
+  bar_label = TRUE,
+  sigfig = 3,
+  accuracy = 0.1,
+  alternate_text = NULL,
+  ranking_colors = FALSE)</code></pre>
+<p><img src="index_files/figure-html/farmers%20market%20ranking-1.png" width="2880" /></p>
+</div>
+</div>
+</div>
+<div id="tackling-food-insecurity" class="section level1">
+<h1>Tackling Food Insecurity</h1>
+<p>Here’s an estimate from Feeding America and Nielsen of how much money (annually) is needed in Louisville and its peer cities to address food insecurity.</p>
+<p>Budget shortfalls have decreased over time in Louisville and its peer cities. (It’s important to note that the percentage of people experiencing food insecurity has also decreased over this time.) In Louisville, the food insecure need about 46 million collectively to meet their food needs. That’s lower than the peer average of about 51 million.</p>
+<pre class="r"><code>this_title &lt;- &quot;Food Insecurity Budget Shortfall&quot;
+this_subtitle &lt;- &quot;The amount needed annually to address food insecurity&quot;
+this_caption_trend_graphs &lt;- &quot;\n\nData from Feeding America&#39;s annual Map the Meal Gap study&quot;
+
+glptools::trend(
+  food_security_county, 
+  budget_shortfall,
+  pctiles=F,
+  plot_title = this_title,
+  subtitle = this_subtitle,
+  caption_text = this_caption_trend_graphs,
+  y_title = &quot;Shortfall (Dollars)&quot;)</code></pre>
+<p><img src="index_files/figure-html/budget%20shortfall-1.png" width="2880" /></p>
 </div>
 
 
