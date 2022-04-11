@@ -538,3 +538,8 @@ glptools::trend(
   y_title = "Shortfall (Dollars)")
 ```
 
+---
+**Learn More**
+
+What are policy makers doing to address food insecurity? Check out this [public policy brief](https://www.cflouisville.org/wp-content/uploads/2018/11/CITATIONS_Public_Policy_Landscape_Louisville_9_27_2018.pdf) on the food access landscape in Louisville from the Community Foundation of Louisville.
+---
