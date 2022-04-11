@@ -256,13 +256,13 @@ div.tocify {
 </div>
 
 
-<p>Measuring food insecurity accurately is challenging because it overlaps with a number of difficult-to-measure factors, like poverty, unemployment, median income, disability status and others. Also, those who are considered food insecure at one point in time might not be food insecure at other times. Often, individuals must make difficult (and ongoing) trade off decisions between paying housing or medical bills and buying nutritious food.</p>
+<p>Measuring food insecurity accurately is challenging because it overlaps with a number of difficult-to-measure factors, like poverty, unemployment, median income and disability status. Also, those who are considered food insecure at one point in time might not be food insecure at other times. Often, individuals must make difficult (and ongoing) trade off decisions between paying housing or medical bills and buying nutritious food.</p>
 <p>However, gaining a clear understanding of a community’s food ecosystem is essential to boosting its social and economic health.</p>
 <p>Here are three broad categories to gain a deeper understanding of the food ecosystem in Louisville and its peer cities:</p>
 <ul>
-<li><strong>Food Insecurity:</strong> percentage of the population who did not have reliable access to food over the past year</li>
-<li><strong>Food Access:</strong> percentage of the population who had some barrier to accessing food over the past year — income constraints, limited vehicle access, etc.</li>
-<li><strong>Food Environment:</strong> overview of various places to buy food in Louisville and its peer cities</li>
+<li><strong>Food Insecurity:</strong> the percentage of the population who did not have reliable access to food over the past year</li>
+<li><strong>Food Access:</strong> the percentage of the population who had some barrier to accessing food over the past year — income constraints, limited vehicle access, etc.</li>
+<li><strong>Food Environment:</strong> an overview of the various places to buy food in Louisville and its peer cities</li>
 </ul>
 <p>For a closer look at food insecurity in Louisville, check out this <a href="https://www.cflouisville.org/community-support/hunger-innovation-fellowship/">report</a> from the Community Foundation of Louisville.</p>
 <pre class="r"><code>library(glptools)
@@ -280,7 +280,7 @@ knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE,
 <ul>
 <li><strong>How Louisville’s Currently Doing:</strong> Nearly 13% of Louisville’s population experienced food insecurity last year. That’s better than most of Louisville’s peers.<br />
 </li>
-<li><strong>How Louisville’s Performed Over Time:</strong> For much of the last decade, Louisville had largely been moving in tandem with its peers. Around 2018, it saw sharp decreases in its food insecurity rate. The city appears to have sustained those decreases during the pandemic, according to Feeding America projections.</li>
+<li><strong>How Louisville’s Performed Over Time:</strong> For much of the last decade, Louisville had largely been moving in tandem with its peers. Around 2018, it saw a decrease in its food insecurity rate. The city appears to have sustained those decreases during the pandemic, according to Feeding America projections.</li>
 </ul>
 <div id="ranking" class="section level2">
 <h2>Ranking</h2>
@@ -347,7 +347,7 @@ glptools::trend_maxmin(
 <h1 class="tabset">Child Food Insecurity</h1>
 <p>Food insecurity among children can be particularly devastating. It can lead to delayed development in young children and increase the risk of asthma, anemia, hyperactivity, anxiety and aggression in school-aged children, according to Feeding America.</p>
 <ul>
-<li><strong>How Louisville’s Currently Doing:</strong> Louisville currently ranks 9th in child food insecurity, with nearly 1 in 5 children experiencing food insecurity in the last year.</li>
+<li><strong>How Louisville’s Currently Doing:</strong> Louisville currently ranks 9th in child food insecurity, with nearly 1 in 5 children experiencing food insecurity during the last year.</li>
 <li><strong>How Louisville’s Performed Over Time:</strong> Around 2018, the child food insecurity rate rose dramatically in Louisville. Before that, it had been holding steady. Indianapolis is the worst performer of the bunch, with its child food insecurity rate rising 0.2 percentage points since 2014. Louisville is not far behind, having seen only a modest 0.4 percentage point decrease in its rate over the same time period.</li>
 </ul>
 <div id="ranking-1" class="section level2">
@@ -408,10 +408,10 @@ glptools::trend_maxmin(
 </div>
 <div id="food-access" class="section level1">
 <h1>Food Access</h1>
-<p>Now, here’s a closer look at the food ecosystem in Louisville: the percentage of the population that is considered low-income and far from a grocery store, the percentage that does not have a vehicle and is far from a grocery store and the percentage that relies on certain food benefits and is far from a grocery store.</p>
+<p>Here’s a closer look at food access in Louisville. It includes the percentage of the population that is considered low-income and far from a grocery store, the percentage that does not have a vehicle and is far from a grocery store and the percentage that relies on certain food benefits and is far from a grocery store.</p>
 <div id="limited-access-to-grocery-stores" class="section level2 tabset">
 <h2 class="tabset">Limited Access to Grocery Stores</h2>
-<p>When looking at the food ecosystem, it’s important to consider not only those who live far from grocery stores but also those who live far from a grocery store <em>and</em> those who live on a low income.</p>
+<p>When looking at the food ecosystem, it’s important to consider not only those who live far from a grocery store but also those who live far from a grocery store <em>and</em> live on a low income.</p>
 <ul>
 <li><strong>How Louisville’s Currently Doing:</strong> Louisville currently ranks 7th on this metric, with about 6% of residents living with low incomes and far from grocery stores. That’s about half the rate of Louisville’s currently worst performing peer city, Birmingham.</li>
 <li><strong>How Louisville’s Performed Over Time:</strong> Louisville has seen its numbers getting worse over the past five years of most recent data. Generally, over the same time period, Louisville’s peers have been improving.</li>
@@ -496,9 +496,9 @@ glptools::trend(
 <p><img src="index_files/figure-html/food%20access%20by%20race-1.png" width="2880" /></p>
 </div>
 </div>
-<div id="limited-access-to-grocery-stores-and-no-vehicle" class="section level2 tabset">
-<h2 class="tabset">Limited Access to Grocery Stores and No Vehicle</h2>
-<p>It becomes significantly more challenging to access nutritious food at a grocery store if a household lives far from a grocery store and does not have access to a vehicle. These households often must rely on public transportation or other transportation methods or shop at stores that are closer to them that also potentially have less nutritious food.</p>
+<div id="limited-access-to-grocery-stores-and-vehicle-access" class="section level2 tabset">
+<h2 class="tabset">Limited Access to Grocery Stores and Vehicle Access</h2>
+<p>It becomes significantly more challenging to access nutritious food at a grocery store if a household lives far away and does not have access to a vehicle. These households often must rely on public transportation or shop at stores that are closer to them that also potentially have less nutritious food.</p>
 <ul>
 <li><strong>How Louisville’s Currently Doing:</strong> More than 2% of Louisville’s population lives more than a mile from a grocery store and does not have a vehicle. That puts it in the bottom half of its peer cohort.</li>
 <li><strong>How Louisville’s Performed Over Time:</strong> Over the last five years of most recent data, Louisville has more than doubled this rate. That makes it the worst performer of its peers.</li>
@@ -564,13 +564,13 @@ glptools::trend_maxmin(
 <p><img src="index_files/figure-html/food%20access%20no%20vehicle%20best%20and%20worse-1.png" width="2880" /></p>
 </div>
 </div>
-<div id="limited-access-to-grocery-stores-and-receiving-snap-benefits" class="section level2 tabset">
-<h2 class="tabset">Limited Access to Grocery Stores and Receiving SNAP Benefits</h2>
-<p>These are the households that live far from a grocery store and receive benefits from the Supplemental Nutrition Assistance Program (SNAP) program.</p>
+<div id="limited-access-to-grocery-stores-and-snap-benefits" class="section level2 tabset">
+<h2 class="tabset">Limited Access to Grocery Stores and SNAP Benefits</h2>
+<p>These are the households that live far from a grocery store and receive benefits from the Supplemental Nutrition Assistance Program (SNAP).</p>
 <ul>
 <li><strong>How Louisville’s Currently Doing:</strong> 2.6% of Louisville’s households receive SNAP benefits and live more than a mile from a grocery store. That puts the city in the top half of its peers.<br />
 </li>
-<li><strong>How Louisville’s Performed Over Time:</strong> Louisville’s rate has increased (though only modestly) over the past five years in which data is available. However, its peer cities have seen their rates decrease. That makes Louisville the worst performer of its peers.</li>
+<li><strong>How Louisville’s Performed Over Time:</strong> Louisville’s rate has increased (though modestly) over the past five years in which data is available. However, its peer cities have seen their rates decrease. That makes Louisville the worst performer of its peers.</li>
 </ul>
 <div id="ranking-4" class="section level3">
 <h3>Ranking</h3>
@@ -645,7 +645,7 @@ glptools::trend_maxmin(
 <p>What does the food environment look like in Louisville? Here’s a breakdown of the number of grocery stores, convenience stores, fast food restaurants and farmers markets per 100,000 people.</p>
 <div id="food-sources" class="section level2 tabset">
 <h2 class="tabset">Food Sources</h2>
-<p>The number of grocery stores and fast food restaurants have remained relatively constant since 2008. Even so, Louisville currently has more grocery stores per 100,000 people than its peer cities, on average. The number of convenience stores in Louisville and its peer cities has decreased.</p>
+<p>The number of grocery stores and fast food restaurants have remained relatively constant since 2008. Even so, Louisville currently has more grocery stores per 100,000 people than its peer cities, on average. The number of convenience stores in Louisville and its peer cities has decreased. The number of farmers markets in Louisville has also decreased.</p>
 <div id="grocery-convenience-and-fast-food" class="section level3">
 <h3>Grocery, Convenience and Fast Food</h3>
 <pre class="r"><code>load(&quot;intermediate_data/food_environment_county.rda&quot;)
@@ -757,10 +757,9 @@ glptools::trend(
 <div id="tackling-food-insecurity" class="section level1">
 <h1>Tackling Food Insecurity</h1>
 <p>Here’s an estimate from Feeding America and Nielsen of how much money (annually) is needed in Louisville and its peer cities to address food insecurity.</p>
-<p>Budget shortfalls have decreased over time in Louisville and its peer cities. (It’s important to note that the percentage of people experiencing food insecurity has also decreased over this time.) In Louisville, the food insecure need about 46 million collectively to meet their food needs. That’s lower than the peer average of about 51 million.</p>
-<pre class="r"><code>knitr::opts_chunk$set(fig.width=34, fig.height=24)
-
-this_title &lt;- &quot;Food Insecurity Budget Shortfall&quot;
+<p>The budget shortfall has decreased over time in Louisville and its peer cities. (It’s important to note, however, that the percentage of people experiencing food insecurity has also decreased over this time.)</p>
+<p>Toward the beginning of the last decade, Louisville had a larger budget shortfall than its peers, on average. Since that point, Louisville has diverged from its peers. Currently, the food insecure in Louisville need about $46 million collectively to meet their food needs. That’s lower than the peer average of about $51 million.</p>
+<pre class="r"><code>this_title &lt;- &quot;Food Insecurity Budget Shortfall&quot;
 this_subtitle &lt;- &quot;The amount needed annually to address food insecurity&quot;
 this_caption_trend_graphs &lt;- &quot;\n\nData from Feeding America&#39;s annual Map the Meal Gap study&quot;
 
@@ -772,7 +771,11 @@ glptools::trend(
   subtitle = this_subtitle,
   caption_text = this_caption_trend_graphs,
   y_title = &quot;Shortfall (Dollars)&quot;)</code></pre>
-<p><img src="index_files/figure-html/budget%20shortfall-1.png" width="2880" /></p>
+<p><img src="index_files/figure-html/budget%20shortfall-1.png" width="3456" /></p>
+<div id="learn-more" class="section level2">
+<h2>Learn More</h2>
+<p>What are policy makers doing to address food insecurity? Check out this <a href="https://www.cflouisville.org/wp-content/uploads/2018/11/CITATIONS_Public_Policy_Landscape_Louisville_9_27_2018.pdf">public policy brief</a> on the food access landscape in Louisville from the Community Foundation of Louisville.</p>
+</div>
 </div>
 
 

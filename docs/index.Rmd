@@ -518,11 +518,11 @@ glptools::ranking(
 
 Here's an estimate from Feeding America and Nielsen of how much money (annually) is needed in Louisville and its peer cities to address food insecurity. 
 
-The budget shortfall has decreased over time in Louisville and its peer cities. (It's important to note, however, that the percentage of people experiencing food insecurity has also decreased over this time.) In Louisville, the food insecure need about 46 million collectively to meet their food needs. That's lower than the peer average of about 51 million.
+The budget shortfall has decreased over time in Louisville and its peer cities. (It's important to note, however, that the percentage of people experiencing food insecurity has also decreased over this time.) 
 
-```{r budget shortfall}
+Toward the beginning of the last decade, Louisville had a larger budget shortfall than its peers, on average. Since that point, Louisville has diverged from its peers. Currently, the food insecure in Louisville need about \$46 million collectively to meet their food needs. That's lower than the peer average of about \$51 million.
 
-knitr::opts_chunk$set(fig.width=34, fig.height=24)
+```{r budget shortfall, fig.width=36}
 
 this_title <- "Food Insecurity Budget Shortfall"
 this_subtitle <- "The amount needed annually to address food insecurity"
@@ -538,8 +538,6 @@ glptools::trend(
   y_title = "Shortfall (Dollars)")
 ```
 
----
-**Learn More**
-
+## Learn More
 What are policy makers doing to address food insecurity? Check out this [public policy brief](https://www.cflouisville.org/wp-content/uploads/2018/11/CITATIONS_Public_Policy_Landscape_Louisville_9_27_2018.pdf) on the food access landscape in Louisville from the Community Foundation of Louisville.
----
+
