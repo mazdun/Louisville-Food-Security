@@ -256,7 +256,7 @@ div.tocify {
 </div>
 
 
-<p>Measuring food insecurity accurately and completely is challenging because it overlaps with a number of difficult-to-measure factors, like poverty, unemployment, median income, disability status and others. Furthermore, those who are considered food insecure at one point in time might not be food insecure at other times. Often, individuals must make difficult (and ongoing) trade off decisions between paying housing or medical bills and buying nutritious food.</p>
+<p>Measuring food insecurity accurately is challenging because it overlaps with a number of difficult-to-measure factors, like poverty, unemployment, median income, disability status and others. Also, those who are considered food insecure at one point in time might not be food insecure at other times. Often, individuals must make difficult (and ongoing) trade off decisions between paying housing or medical bills and buying nutritious food.</p>
 <p>However, gaining a clear understanding of a community’s food ecosystem is essential to boosting its social and economic health.</p>
 <p>Here are three broad categories to gain a deeper understanding of the food ecosystem in Louisville and its peer cities:</p>
 <ul>
@@ -264,6 +264,7 @@ div.tocify {
 <li><strong>Food Access:</strong> percentage of the population who had some barrier to accessing food over the past year — income constraints, limited vehicle access, etc.</li>
 <li><strong>Food Environment:</strong> overview of various places to buy food in Louisville and its peer cities</li>
 </ul>
+<p>For a closer look at food insecurity in Louisville, check out this <a href="https://www.cflouisville.org/community-support/hunger-innovation-fellowship/">report</a> from the Community Foundation of Louisville.</p>
 <pre class="r"><code>library(glptools)
 library(glpdata)
 glp_load_packages(graphs = T)
@@ -757,7 +758,9 @@ glptools::trend(
 <h1>Tackling Food Insecurity</h1>
 <p>Here’s an estimate from Feeding America and Nielsen of how much money (annually) is needed in Louisville and its peer cities to address food insecurity.</p>
 <p>Budget shortfalls have decreased over time in Louisville and its peer cities. (It’s important to note that the percentage of people experiencing food insecurity has also decreased over this time.) In Louisville, the food insecure need about 46 million collectively to meet their food needs. That’s lower than the peer average of about 51 million.</p>
-<pre class="r"><code>this_title &lt;- &quot;Food Insecurity Budget Shortfall&quot;
+<pre class="r"><code>knitr::opts_chunk$set(fig.width=34, fig.height=24)
+
+this_title &lt;- &quot;Food Insecurity Budget Shortfall&quot;
 this_subtitle &lt;- &quot;The amount needed annually to address food insecurity&quot;
 this_caption_trend_graphs &lt;- &quot;\n\nData from Feeding America&#39;s annual Map the Meal Gap study&quot;
 
