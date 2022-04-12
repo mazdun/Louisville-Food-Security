@@ -18,6 +18,14 @@ Here are three broad categories to gain a deeper understanding of the food ecosy
 * **Food Access:** the percentage of the population who had some barrier to accessing food over the past year — income constraints, limited vehicle access, etc.
 * **Food Environment:** an overview of the various places to buy food in Louisville and its peer cities
 
+> **Key Takeaways**
+
+* In Louisville and its peer cities, the childhood food insecurity rate is much worse than the overall food insecurity rate. The COVID-19 pandemic further increased the share of children experiencing food insecurity. 
+* Among its cohort of peers, Louisville is the worst performer in terms of households that do not have a car and live relatively far from a grocery store (more than 1 mile). Additionally, Louisville appears to be worsening over time, whereas its peers, on average, are improving. 
+* Louisville is also the worst performer among its peers in terms of the share of households that receive SNAP benefits and live relatively far from a grocery store (more than 1 mile). It is worsening over time, whereas its peers, on average, are improving. 
+* In general, Louisville has more access to healthy foods than its peer cities (with more grocery stores and farmers markets per 100,000 people). It also has fewer convenience stores. 
+* Louisville needs about $46 million annually to meet its current food needs. Its peers need about $51 million, on average. 
+
 For a closer look at food insecurity in Louisville, check out this [report](https://www.cflouisville.org/community-support/hunger-innovation-fellowship/) from the Community Foundation of Louisville. 
 
 ```{r setup, message=FALSE, warning=FALSE}
@@ -181,7 +189,7 @@ In terms of **race**, more than a quarter of White residents in Louisville have 
 ```{r food access ranking}
 load("intermediate_data/food_access_county.rda")
 
-this_title <- "Limted Access to Grocery Stores"
+this_title <- "Limited Access to Grocery Stores"
 this_subtitle <- "People with low incomes who live far from grocery stores"
 this_caption <- "\n\nData from the USDA's Food Access Research Atlas, 2019"
 this_caption_trend_graphs <- "\n\nData from the USDA's Food Access Research Atlas"
@@ -205,7 +213,7 @@ glptools::ranking(
 
 ### Trend
 ```{r food access trend}
-this_title <- "Limted Access to Grocery Stores"
+this_title <- "Limited Access to Grocery Stores"
 this_subtitle <- "People with low incomes who live far from grocery stores"
 this_caption <- "\n\nData from the USDA's Food Access Research Atlas, 2019"
 this_caption_trend_graphs <- "\n\nData from the USDA's Food Access Research Atlas"
@@ -221,7 +229,7 @@ glptools::trend(
 
 ### Best and Worst Performers
 ```{r food access best and worse, results='hide'}
-this_title <- "Limted Access to Grocery Stores"
+this_title <- "Limited Access to Grocery Stores"
 this_subtitle <- "People with low incomes who live far from grocery stores"
 this_caption <- "\n\nData from the USDA's Food Access Research Atlas, 2019"
 this_caption_trend_graphs <- "\n\nData from the USDA's Food Access Research Atlas"
@@ -241,7 +249,7 @@ glptools::trend_maxmin(
 ```{r food access by race, results='hide'}
 load("intermediate_data/food_access_race_county.rda")
 
-this_title <- "Limted Access to Grocery Stores by Race"
+this_title <- "Limited Access to Grocery Stores by Race"
 this_caption_trend_graphs <- "\n\nData from the USDA's Food Access Research Atlas"
 
 glptools::trend(
@@ -254,12 +262,25 @@ glptools::trend(
   y_title = "Percent")
 ```
 
+### Map
+```{r limited food access map, out.width = '100%', out.height=500}
+load("intermediate_data/kentucky_food_atlas_data.rda")
+
+kentucky_food_atlas_data <- kentucky_food_atlas_data %>%
+  na.omit() %>%
+  mutate(lalowi1share=as.numeric(lalowi1share))
+
+make_map(kentucky_food_atlas_data, 'lalowi1share', 'Low Access and Low Income')
+```
+
 ## Limited Access to Grocery Stores and Vehicle Access {.tabset}
 
 It becomes significantly more challenging to access nutritious food at a grocery store if a household lives far away and does not have access to a vehicle. These households often must rely on public transportation or shop at stores that are closer to them that also potentially have less nutritious food. 
 
-* **How Louisville's Currently Doing:** More than 2% of Louisville's population lives more than a mile from a grocery store and does not have a vehicle. That puts it in the bottom half of its peer cohort. 
+* **How Louisville's Currently Doing:** More than 2% of Louisville's households live more than a mile from a grocery store and do not have a vehicle. That puts it in the bottom half of its peer cohort. 
 * **How Louisville's Performed Over Time:** Over the last five years of most recent data, Louisville has more than doubled this rate. That makes it the worst performer of its peers. 
+
+**More Context:** In Louisville, about 10.4% of households overall do not have access to a vehicle, according to the U.S. Census Bureau's American Community Survey. Statewide, that number is 7%.
 
 ### Ranking
 ```{r food access no vehicle ranking}
@@ -321,12 +342,25 @@ glptools::trend_maxmin(
   caption_text = this_caption_trend_graphs)
 ```
 
+### Map
+```{r limited vehicle access map, out.width = '100%', out.height=500}
+load("intermediate_data/kentucky_food_atlas_data.rda")
+
+kentucky_food_atlas_data <- kentucky_food_atlas_data %>%
+  na.omit() %>%
+  mutate(lahunv1share=as.numeric(lahunv1share))
+
+make_map(kentucky_food_atlas_data, 'lahunv1share', 'Low Access Households without Vehicle')
+```
+
 ## Limited Access to Grocery Stores and SNAP Benefits {.tabset}
 
 These are the households that live far from a grocery store and receive benefits from the Supplemental Nutrition Assistance Program (SNAP).
 
 * **How Louisville's Currently Doing:** 2.6% of Louisville's households receive SNAP benefits and live more than a mile from a grocery store. That puts the city in the top half of its peers.  
 * **How Louisville's Performed Over Time:** Louisville's rate has increased (though modestly) over the past five years in which data is available. However, its peer cities have seen their rates decrease. That makes Louisville the worst performer of its peers.
+
+**More Context:** In Louisville, about 12% of households overall receive food benefits, according to the U.S. Census Bureau's American Community Survey. Statewide, that number is 13%.
 
 ### Ranking
 ```{r food access SNAP ranking}
@@ -394,22 +428,42 @@ glptools::trend_maxmin(
   caption_text = this_caption_trend_graphs)
 ```
 
+### Map
+```{r SNAP map, out.width = '100%', out.height=500}
+load("intermediate_data/kentucky_food_atlas_data.rda")
+
+kentucky_food_atlas_data <- kentucky_food_atlas_data %>%
+  na.omit() %>%
+  mutate(lasnap1share=as.numeric(lasnap1share))
+
+make_map(kentucky_food_atlas_data, 'lasnap1share', 'Low Access and SNAP')
+```
+
 # Food Environment
 
 What does the food environment look like in Louisville? Here's a breakdown of the number of grocery stores, convenience stores, fast food restaurants and farmers markets per 100,000 people.
 
+**More Context:** The USDA defines each of these establishments precisely. Here are the definitions:
+* Grocery stores are stores that sell canned and frozen foods, fresh fruits and vegetables and fresh meats. Deli-type stores are also included. Convenience stores, supercenters and warehouse club stores are not included.
+* Convenience stores — also known as food marts — primarily sell milk, bread, soda and snacks.
+* Fast food restaurants are places in which customers order their food and pay before eating. Customers can consume the food at the store, take it out or have it delivered. Fast food restaurants can also sell alcohol.
+* Farmers markets are retail outlets with two or more vendors who sell agricultural products directly to consumers. (At least 51 percent of the retail sales must be direct to consumers). 
+
 ## Food Sources {.tabset}
 
-The number of grocery stores and fast food restaurants have remained relatively constant since 2008. Even so, Louisville currently has more grocery stores per 100,000 people than its peer cities, on average. The number of convenience stores in Louisville and its peer cities has decreased. The number of farmers markets in Louisville has also decreased.
+The number of grocery stores, convenience stores and fast food restaurants has remained relatively constant since 2009. Even so, Louisville currently has more grocery stores per 100,000 people than its peer cities, on average. It also has significantly fewer convenience stores than its peers, on average. 
 
 ### Grocery, Convenience and Fast Food 
 ```{r food environment trend}
 
 load("intermediate_data/food_environment_county.rda")
 
+food_environment_county <- food_environment_county %>%
+  filter(year!=2007)
+
 this_title <- "Louisville Food Sources"
 this_subtitle <- "Per 100,000 people"
-this_caption_trend_graphs <- "\n\nData from the USDA's Food Access Research Atlas"
+this_caption_trend_graphs <- "\n\nData from the USDA's Food Environment Atlas"
 
 glptools::trend(
   food_environment_county, c(grocery_stores_per_100000, convenience_stores_per_100000, fast_food_per_100000),
@@ -426,10 +480,10 @@ glptools::trend(
 
 this_title <- "Farmers Markets"
 this_subtitle <- "Per 100,000 people"
-this_caption_trend_graphs <- "\n\nData from the USDA's Food Access Research Atlas"
+this_caption_trend_graphs <- "\n\nData from the USDA's Food Environment Atlas"
 
 glptools::trend(
-  food_environment_county, 
+  food_environment_county,
   farmers_markets_per_100000,
   pctiles=F,
   plot_title = this_title,
@@ -449,7 +503,7 @@ glptools::ranking(
   order = "Descending",
   y_title = "Grocery stores per 100,000 people",
   plot_title = "Grocery Stores, 2016",
-  caption_text = "\n\nData from the USDA's Food Access Research Atlas, 2016",
+  caption_text = "\n\nData from the USDA's Food Environment Atlas, 2016",
   bar_label = TRUE,
   sigfig = 3,
   accuracy = 0.1,
@@ -468,7 +522,7 @@ glptools::ranking(
   order = "Ascending",
   y_title = "Convenience stores per 100,000 people",
   plot_title = "Convenience Stores, 2016",
-  caption_text = "\n\nData from the USDA's Food Access Research Atlas, 2016",
+  caption_text = "\n\nData from the USDA's Food Environment Atlas, 2016",
   bar_label = TRUE,
   sigfig = 3,
   accuracy = 0.1,
@@ -487,7 +541,7 @@ glptools::ranking(
   order = "Ascending",
   y_title = "Fast food restaurants per 100,000 people",
   plot_title = "Fast Food Restaurants, 2016",
-  caption_text = "\n\nData from the USDA's Food Access Research Atlas, 2016",
+  caption_text = "\n\nData from the USDA's Food Environment Atlas, 2016",
   bar_label = TRUE,
   sigfig = 3,
   accuracy = 0.1,
@@ -506,7 +560,7 @@ glptools::ranking(
   order = "Descending",
   y_title = "Farmers markets per 100,000 people",
   plot_title = "Farmers Markets, 2018",
-  caption_text = "\n\nData from the USDA's Food Access Research Atlas, 2018",
+  caption_text = "\n\nData from the USDA's Food Environment Atlas, 2018",
   bar_label = TRUE,
   sigfig = 3,
   accuracy = 0.1,
