@@ -47,8 +47,10 @@ The food insecurity metric estimates how much of the population did not have rel
 * **How Louisville's Currently Doing:** Nearly 13% of Louisville's population experienced food insecurity last year. That's better than most of Louisville's peers.  
 * **How Louisville's Performed Over Time:** For much of the last decade, Louisville had largely been moving in tandem with its peers. Around 2018, it saw a decrease in its food insecurity rate. The city appears to have sustained those decreases during the pandemic, according to Feeding America projections. 
 
+**More Context:** Feeding America uses a fairly detailed process to estimate food insecurity at the county level. First, it examines the relationship between food insecurity and several other factors (poverty, unemployment, median income, disability status, etc) at the *state* level using data from the Current Population Survey. Then, it uses the results of that analysis, together with poverty, unemployment, median income and disability status data at the county level to estimate food insecurity at the *county* level. 
+
 ## Ranking
-*Note: 2020 and 2021 data are projections from Feeding America and could change in subsequent years.*
+*Note: For 2020 and 2021, Feeding America projected unemployment and poverty data since actual data is not available. Therefore, the food insecurity estimates for 2020 and 2021, which are built on the projected data, could fluctuate in future years.*
 ```{r food insecurity ranking}
 load("intermediate_data/food_security_county.rda")
 
