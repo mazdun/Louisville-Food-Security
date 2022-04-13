@@ -446,10 +446,11 @@ make_map(kentucky_food_atlas_data, 'lasnap1share', 'Low Access and SNAP')
 What does the food environment look like in Louisville? Here's a breakdown of the number of grocery stores, convenience stores, fast food restaurants and farmers markets per 100,000 people.
 
 **More Context:** The USDA defines each of these establishments precisely. Here are the definitions:
+
 * Grocery stores are stores that sell canned and frozen foods, fresh fruits and vegetables and fresh meats. Deli-type stores are also included. Convenience stores, supercenters and warehouse club stores are not included.
-* Convenience stores — also known as food marts — primarily sell milk, bread, soda and snacks.
-* Fast food restaurants are places in which customers order their food and pay before eating. Customers can consume the food at the store, take it out or have it delivered. Fast food restaurants can also sell alcohol.
-* Farmers markets are retail outlets with two or more vendors who sell agricultural products directly to consumers. (At least 51 percent of the retail sales must be direct to consumers). 
+* Convenience stores — also known as food marts — primarily sell milk, bread, soda and snacks. 
+* Fast food restaurants are places in which customers order their food and pay before eating. Customers can consume the food at the store, take it out or have it delivered. Fast food restaurants can also sell alcohol. 
+* Farmers markets are retail outlets with two or more vendors who sell agricultural products directly to consumers. (At least 51 percent of the retail sales must be direct to consumers).   
 
 ## Food Sources {.tabset}
 
