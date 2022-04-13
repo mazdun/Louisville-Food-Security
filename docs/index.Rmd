@@ -20,7 +20,7 @@ Here are three broad categories to gain a deeper understanding of the food ecosy
 
 > **Key Takeaways**
 
-* In Louisville and its peer cities, the childhood food insecurity rate is much worse than the overall food insecurity rate. The COVID-19 pandemic further increased the share of children experiencing food insecurity. 
+* In Louisville and its peer cities, the childhood food insecurity rate is much higher than the overall food insecurity rate. The COVID-19 pandemic further increased the share of children experiencing food insecurity. 
 * Among its cohort of peers, Louisville is the worst performer in terms of households that do not have a car and live relatively far from a grocery store (more than 1 mile). Additionally, Louisville appears to be worsening over time, whereas its peers, on average, are improving. 
 * Louisville is also the worst performer among its peers in terms of the share of households that receive SNAP benefits and live relatively far from a grocery store (more than 1 mile). It is worsening over time, whereas its peers, on average, are improving. 
 * In general, Louisville has more access to healthy foods than its peer cities (with more grocery stores and farmers markets per 100,000 people). It also has fewer convenience stores. 
