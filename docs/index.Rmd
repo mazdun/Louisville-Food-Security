@@ -175,7 +175,7 @@ glptools::trend_maxmin(
 
 # Food Access 
 
-Here's a closer look at food access in Louisville. It includes the percentage of the population that is considered low-income and far from a grocery store, the percentage that does not have a vehicle and is far from a grocery store and the percentage that relies on certain food benefits and is far from a grocery store.
+Here's a closer look at food access in Louisville. It includes the percentage of the population that is considered low-income and far from a grocery store, the percentage of households that do not have a vehicle and are far from a grocery store and the percentage of households that rely on certain food benefits and are far from a grocery store.
 
 ## Limited Access to Grocery Stores and Income Constraints {.tabset}
 
