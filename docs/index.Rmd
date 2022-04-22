@@ -18,13 +18,14 @@ Here are three broad categories to gain a deeper understanding of the food ecosy
 * **Food Access:** the percentage of the population who had some barrier to accessing food over the past year — income constraints, limited vehicle access, etc.
 * **Food Environment:** an overview of the various places to buy food in Louisville and its peer cities
 
-> **Key Takeaways**
+> **Key Takeaways:**
 
 * In Louisville and its peer cities, the childhood food insecurity rate is much higher than the overall food insecurity rate. The COVID-19 pandemic further increased the share of children experiencing food insecurity. 
 * Among its cohort of peers, Louisville is the worst performer in terms of households that do not have a car and live relatively far from a grocery store (more than 1 mile). Additionally, Louisville appears to be worsening over time, whereas its peers, on average, are improving. 
 * Louisville is also the worst performer among its peers in terms of the share of households that receive SNAP benefits and live relatively far from a grocery store (more than 1 mile). It is worsening over time, whereas its peers, on average, are improving. 
 * In general, Louisville has more access to healthy foods than its peer cities (with more grocery stores and farmers markets per 100,000 people). It also has fewer convenience stores. 
-* Louisville needs about $46 million annually to meet its current food needs. Its peers need about $51 million, on average. 
+* Louisville needs about \$46 million annually to meet its current food needs. Its peers need about \$51 million, on average. 
+* Nearly 31,000 people in the Louisville area are food insecure and do not qualify for federal food assistance. 
 
 For a closer look at food insecurity in Louisville, check out this [report](https://www.cflouisville.org/community-support/hunger-innovation-fellowship/) from the Community Foundation of Louisville. 
 
@@ -611,14 +612,18 @@ glptools::ranking(
 
 # Tackling Food Insecurity
 
-Here's an estimate from Feeding America and Nielsen of how much money (annually) is needed in Louisville and its peer cities to address food insecurity. 
+Currently, Louisville needs about \$46 million annually to meet the needs of its food insecure population, according to estimates from Feeding America. That's lower than the peer average of about \$51 million.
 
-The budget shortfall has decreased over time in Louisville and its peer cities. (It's important to note, however, that the percentage of people experiencing food insecurity has also decreased over this time.) 
+The budget shortfall in Louisville and its peer cities has decreased over time. It's important to note, however, that the percentage of people experiencing food insecurity has also decreased over this time. 
 
-Toward the beginning of the last decade, Louisville had a larger budget shortfall than its peers, on average. Since that point, Louisville has diverged from its peers. Currently, the food insecure in Louisville need about \$46 million collectively to meet their food needs. That's lower than the peer average of about \$51 million.
+Toward the beginning of the last decade, Louisville had a larger budget shortfall than its peers, on average. Since that point, Louisville has diverged from its peers.
 
 > **Bridging the Budget Gap:**
-Bridging this $46 million gap in Louisville (and similar gaps in other cities) is tricky. Government programs like the Supplemental Nutrition Assistance Program (SNAP), WIC program and school meal programs help some — but far from all — of the food insecure. In 2020, Feeding America estimated that as much as *one-third* of food insecure people may not qualify for governmental food assistance. That leaves a wide swath of people that depend on the charitable sector to meet their food needs.
+
+* Bridging this $46 million gap in Louisville (and similar gaps in other cities) is tricky. Government programs like the Supplemental Nutrition Assistance Program (SNAP), WIC program and school meal programs help some — but far from all — of the food insecure. 
+* In Louisville, individuals can only make up to 200% of the federal poverty level to qualify for federal food assistance. In 2019, Feeding America estimated that 34.1% of the food insecure population in Jefferson County makes *more than* 200% of the federal poverty level and therefore does not qualify for federal food assistance. That means that about 30,584 people in the Louisville area are food insecure and do not qualify for federal food assistance. Many depend on the charitable sector or other non-governmental sources to meet their food needs.
+
+![](Food_insecure_louisville_graphic.png)
 
 ```{r budget shortfall, fig.width=36}
 
