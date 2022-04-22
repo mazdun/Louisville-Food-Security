@@ -8,9 +8,13 @@ output:
     code_folding: hide
 knit: (function(inputFile, encoding) { rmarkdown::render(inputFile, encoding = encoding, output_file = file.path(dirname(inputFile), 'index.html')) })
 ---
-Measuring food insecurity accurately is challenging because it overlaps with a number of difficult-to-measure factors, like poverty, unemployment, median income and disability status. Also, those who are considered food insecure at one point in time might not be food insecure at other times. Often, individuals must make difficult (and ongoing) trade off decisions between paying housing or medical bills and buying nutritious food.
+Measuring food insecurity accurately is challenging because it overlaps with a number of difficult-to-measure factors, like poverty, unemployment, median income and disability status. Also, those who are considered food insecure at one point in time might not be food insecure at other times. 
 
-However, gaining a clear understanding of a community’s food ecosystem is essential to boosting its social and economic health. 
+Often, individuals must make difficult (and ongoing) trade off decisions between paying for housing or transportation and buying nutritious food. The typical family of 4 (2 working adults and 2 children) in Louisville spends about 13% of their yearly income on food. A greater share of their income typically goes to child care, transportation and housing. 
+
+![](Budget Breakdown.png)
+
+Gaining a clear understanding of a community’s food ecosystem is essential to boosting its social and economic health. 
 
 Here are three broad categories to gain a deeper understanding of the food ecosystem in Louisville and its peer cities:
 
