@@ -24,7 +24,7 @@ Here are three broad categories to gain a deeper understanding of the food ecosy
 * Among its cohort of peers, Louisville is the worst performer in terms of households that do not have a car and live relatively far from a grocery store (more than 1 mile). Additionally, Louisville appears to be worsening over time, whereas its peers, on average, are improving. 
 * Louisville is also the worst performer among its peers in terms of the share of households that receive SNAP benefits and live relatively far from a grocery store (more than 1 mile). It is worsening over time, whereas its peers, on average, are improving. 
 * In general, Louisville has more access to healthy foods than its peer cities (with more grocery stores and farmers markets per 100,000 people). It also has fewer convenience stores. 
-* Louisville needs about \$46 million annually to meet its current food needs. Its peers need about \$51 million, on average. 
+* Louisville needs about \$46 million annually to meet its current food needs. Its peers need about \$49 million, on average. 
 * Nearly 31,000 people in the Louisville area are food insecure and do not qualify for federal food assistance. 
 
 For a closer look at food insecurity in Louisville, check out this [report](https://www.cflouisville.org/community-support/hunger-innovation-fellowship/) from the Community Foundation of Louisville. 
@@ -612,11 +612,9 @@ glptools::ranking(
 
 # Tackling Food Insecurity
 
-Currently, Louisville needs about \$46 million annually to meet the needs of its food insecure population, according to estimates from Feeding America. That's lower than the peer average of about \$51 million.
+Currently, Louisville needs about \$46 million annually to meet the needs of its food insecure population, according to estimates from Feeding America. That's lower than the peer average of about \$49 million.
 
 The budget shortfall in Louisville and its peer cities has decreased over time. It's important to note, however, that the percentage of people experiencing food insecurity has also decreased over this time. 
-
-Toward the beginning of the last decade, Louisville had a larger budget shortfall than its peers, on average. Since that point, Louisville has diverged from its peers.
 
 > **Bridging the Budget Gap:**
 
@@ -625,15 +623,17 @@ Toward the beginning of the last decade, Louisville had a larger budget shortfal
 
 ![](Food_insecure_louisville_graphic.png)
 
-```{r budget shortfall, fig.width=36}
+```{r budget shortfall standardized, fig.width=36}
+
+load("intermediate_data/standardized_budget_shortfall.rda")
 
 this_title <- "Food Insecurity Budget Shortfall"
 this_subtitle <- "The amount needed annually to address food insecurity"
 this_caption_trend_graphs <- "\n\nData from Feeding America's annual Map the Meal Gap study"
 
 glptools::trend(
-  food_security_county, 
-  budget_shortfall,
+  standardized_budget_shortfall, 
+  budget_shortfall_standardized,
   pctiles=F,
   plot_title = this_title,
   subtitle = this_subtitle,
@@ -642,6 +642,8 @@ glptools::trend(
   label_function = dollar_format(scale = .000001, suffix = "M", accuracy = .1),
   y_title = "Dollars")
 ```
+
+*Note: The budget shortfall in Louisville's peer cities is standardized to Louisville's total food insecure population in each year.*
 
 > **Learn More:**
 What are policy makers doing to address food insecurity? Check out this [public policy brief](https://www.cflouisville.org/wp-content/uploads/2018/11/CITATIONS_Public_Policy_Landscape_Louisville_9_27_2018.pdf) on the food access landscape in Louisville from the Community Foundation of Louisville.
