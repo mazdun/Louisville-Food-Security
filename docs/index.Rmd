@@ -10,7 +10,7 @@ knit: (function(inputFile, encoding) { rmarkdown::render(inputFile, encoding = e
 ---
 Measuring food insecurity accurately is challenging because it overlaps with a number of difficult-to-measure factors, like poverty, unemployment, median income and disability status. Also, those who are considered food insecure at one point in time might not be food insecure at other times. 
 
-Often, individuals must make difficult (and ongoing) trade off decisions between paying for housing or transportation and buying nutritious food. The typical family of 4 (2 working adults and 2 children) in Louisville spends about 13% of their yearly income on food. A greater share of their income typically goes to child care, transportation and housing. 
+Often, individuals must make difficult (and ongoing) trade off decisions between paying for housing or transportation and buying nutritious food. The typical family of 4 (2 working adults and 2 children) in Louisville needs about **$76,491** each year after taxes (or \$94,375 before taxes) to achieve a living wage. These households spend about 13% of their yearly income on food. A greater share of their income typically goes to child care, transportation and housing. 
 
 ![](Budget Breakdown.png)
 
@@ -620,12 +620,12 @@ Currently, Louisville needs about \$46 million annually to meet the needs of its
 
 The budget shortfall in Louisville and its peer cities has decreased over time. It's important to note, however, that the percentage of people experiencing food insecurity has also decreased over this time. 
 
-> **Bridging the Budget Gap:**
+> **Bridging the Household Budget Gap:**
 
 * Bridging this $46 million gap in Louisville (and similar gaps in other cities) is tricky. Government programs like the Supplemental Nutrition Assistance Program (SNAP), WIC program and school meal programs help some — but far from all — of the food insecure. 
-* In Louisville, individuals can only make up to 200% of the federal poverty level to qualify for federal food assistance. In 2019, Feeding America estimated that 34.1% of the food insecure population in Jefferson County makes *more than* 200% of the federal poverty level and therefore does not qualify for federal food assistance. That means that about 30,584 people in the Louisville area are food insecure and do not qualify for federal food assistance. Many depend on the charitable sector or other non-governmental sources to meet their food needs.
+* In Louisville, households can only make up to 200% of the federal poverty level to qualify for federal food assistance. In 2019, Feeding America estimated that 34.1% of the food insecure population in Jefferson County live in households that make *more than* 200% of the federal poverty level and therefore do not qualify for federal food assistance. That means that about 30,584 people in the Louisville area are food insecure and do not qualify for federal food assistance. Many depend on the charitable sector or other non-governmental sources to meet their food needs.
 
-![](Food_insecure_louisville_graphic.png)
+![](Benefit_gap.png)
 
 ```{r budget shortfall standardized, fig.width=36}
 
