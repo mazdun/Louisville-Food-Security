@@ -90,7 +90,6 @@ this_caption_trend_graphs <- "\n\nData from Feeding America's annual Map the Mea
 glptools::trend(
   food_security_county,
   food_insecurity,
-  rollmean = 3,
   plot_title = this_title,
   caption_text = this_caption_trend_graphs,
   y_title = "Percent")
@@ -155,7 +154,6 @@ this_caption_trend_graphs_child <- "\n\nData from Feeding America's annual Map t
 glptools::trend(
   food_security_county,
   child_food_insecurity,
-  rollmean = 3,
   plot_title = this_title_child,
   caption_text = this_caption_trend_graphs_child,
   y_title = "Percent")
