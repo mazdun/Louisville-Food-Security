@@ -42,7 +42,7 @@ font_add("Museo Sans", "MuseoSans_300.otf")
 font_add("Museo Sans 300 Italic", "MuseoSans_300_Italic.otf")
 knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
 knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE, 
-                      dev.args=list(bg="transparent"), fig.width=30, fig.height=24)
+                      dev.args=list(bg="transparent"), fig.width=15, fig.height=12)
 ```
 
 # Food Insecurity {.tabset}
@@ -459,7 +459,7 @@ What does the food environment look like in Louisville? Here's a map of large gr
 
 This map shows areas within a one-mile walk or drive of large grocery stores in Louisville. Most grocery stores are categorized as superstores because they sell a variety of consumer in addition to food, like clothes, cleaning supplies, and other household goods. Supermarkets are very large groceries, typically with 10 or more checkout lanes, while large grocery stores are other large food providers.
 
-```{r}
+```{r, out.width = '100%', out.height = '600px'}
 load("intermediate_data/Louisville map.RData")
 
 library(viridis)
@@ -471,7 +471,7 @@ pal <- leaflet::colorFactor(
 lou_food_map %<>%
   filter(!is.na(type))
 
-leaflet(lou_food_map) %>%
+leaflet(lou_food_map, width = "100%") %>%
   addTiles() %>%
   addPolygons(data = filter(map_county, FIPS == "21111"),
             color = "black",
