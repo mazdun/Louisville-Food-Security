@@ -205,11 +205,11 @@ this_caption_trend_graphs <- "\n\nData from the USDA's Food Access Research Atla
 glptools::ranking(
   poverty_fd_county,
   food_desert,
-  year = 2021,
+  year = 2020,
   peers = "Current",
   order = "Ascending",
   y_title = "Percent",
-  plot_title = this_title %p% ", 2021",
+  plot_title = this_title %p% ", 2020",
   subtitle = this_subtitle,
   caption_text = this_caption,
   bar_label = TRUE,
@@ -280,7 +280,7 @@ kentucky_food_atlas_data <- kentucky_food_atlas_data %>%
   mutate(lalowi1share=as.numeric(lalowi1share))
 
 poverty_fd_map %<>%
-  filter(year == 2021, FIPS == "21111") %>%
+  filter(year == 2020, FIPS == "21111") %>%
   select(-FIPS)
 
 make_map(poverty_fd_map, 'food_desert', 'Low Access and Low Income')
@@ -291,7 +291,7 @@ make_map(poverty_fd_map, 'food_desert', 'Low Access and Low Income')
 It becomes significantly more challenging to access nutritious food at a grocery store if a household lives far away and does not have access to a vehicle. These households often must rely on public transportation or shop at stores that are closer to them that potentially have less nutritious food. 
 
 * **How Louisville's Currently Doing:** More than 6% of Louisville's households live more than a mile from a grocery store and do not have a vehicle. That puts it in the bottom half of its peer cohort. 
-* **How Louisville's Performed Over Time:** Louisville saw a sharp increase in the number of households without vehicles who live far from a grocery in 2017. That makes it sone of the worst performers of its peers.
+* **How Louisville's Performed Over Time:** Louisville saw a sharp increase in the number of households without vehicles who live far from a grocery in 2017. That makes it one of the worst performers of its peers.
 
 **More Context:** In Louisville, about 10.4% of households overall do not have access to a vehicle, according to the U.S. Census Bureau's American Community Survey. Statewide, that number is 7%.
 
@@ -307,11 +307,11 @@ this_caption_trend_graphs <- "\n\nData from the USDA's Food Access Research Atla
 glptools::ranking(
   vehicle_fd_county,
   food_desert,
-  year = 2021,
+  year = 2020,
   peers = "Current",
   order = "Ascending",
   y_title = "Percent",
-  plot_title = this_title %p% ", 2021",
+  plot_title = this_title %p% ", 2020",
   subtitle = this_subtitle,
   caption_text = this_caption,
   bar_label = TRUE,
@@ -388,11 +388,11 @@ this_caption_trend_graphs <- "\n\nData from the USDA's Food Access Research Atla
 glptools::ranking(
   snap_fd_county,
   food_desert,
-  year = 2021,
+  year = 2020,
   peers = "Current",
   order = "Ascending",
   y_title = "Percent",
-  plot_title = this_title %p% ", 2021",
+  plot_title = this_title %p% ", 2020",
   subtitle = this_subtitle,
   caption_text = this_caption,
   bar_label = TRUE,
@@ -445,7 +445,7 @@ kentucky_food_atlas_data <- kentucky_food_atlas_data %>%
   mutate(lasnap1share=as.numeric(lasnap1share))
 
 snap_fd_map %<>%
-  filter(year == 2021, FIPS == "21111") %>%
+  filter(year == 2020, FIPS == "21111") %>%
   select(-FIPS)
 
 make_map(snap_fd_map, 'food_desert', 'Low Access and SNAP')
@@ -674,7 +674,7 @@ The budget shortfall in Louisville and its peer cities has decreased over time. 
 
 ![](Benefit_gap.png)
 
-```{r budget shortfall standardized, fig.width=36}
+```{r budget shortfall standardized, fig.width=18}
 
 load("intermediate_data/standardized_budget_shortfall.rda")
 
