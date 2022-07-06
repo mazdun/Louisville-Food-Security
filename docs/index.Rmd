@@ -113,6 +113,75 @@ glptools::trend_maxmin(
   caption_text = this_caption_trend_graphs)
 ```
 
+## Neighborhood Map
+
+```{r, out.width = '100%', out.height=500}
+insecurity_map <- readxl::read_excel("IN_KY_tracts_zctas_192021.xlsx", sheet = 2, 
+                                     col_types = c(rep("text", 5), rep("numeric", 18)))
+
+insecurity_map %<>%
+  filter(str_sub(TractID, 1, 5) == "21111") %>%
+  transmute(
+    tract = TractID,
+    food_insecure = percent_food_insecure_2021 * 100)
+
+make_map(insecurity_map, 'food_insecure', 'Food Insecurity')
+```
+
+## Metro Council District Map
+
+```{r, out.width = '100%', out.height=500}
+
+crosswalk <- district_tract %>%
+  group_by(tract) %>%
+  mutate(across(population, ~ . / sum(.)))
+
+pop_df <- glpdata::population_tract %>%
+  filter(race == "total", sex == "total", year == 2019) %>%
+  select(tract, pop = population)
+
+district_insecurity_map <- insecurity_map %>%
+  left_join(crosswalk, by = "tract") %>%
+  left_join(pop_df, by = "tract") %>%
+  group_by(district) %>%
+  summarize(
+    dist_pop = sum(population * pop),
+    dist_food_insecure = sum(pop * food_insecure * population / 100, na.rm = TRUE),
+    insecure_percent = dist_food_insecure / dist_pop * 100)
+
+dist_map <- map_district %>%
+  left_join(district_insecurity_map, by = "district")
+
+
+ labels <- sprintf("%s<br/>%s<br/>%s",
+                    "District " %p% district_insecurity_map$district,
+                    scales::percent(district_insecurity_map$insecure_percent, scale = 1, accuracy = 0.1) %p% " of residents are food insecure.",
+                    scales::comma(district_insecurity_map$dist_food_insecure) %p% " total residents are food insecure.") %>%
+    lapply(htmltools::HTML)
+
+ 
+color_vector <- RColorBrewer::brewer.pal(9, "BuPu")
+var_range <- range(dist_map$insecure_percent)
+pal <- leaflet::colorNumeric(
+  palette = color_vector,
+  domain = var_range)
+
+m <- leaflet(dist_map) %>%
+  addPolygons(
+      color = "#444444", weight = 1, smoothFactor = 0.5, opacity = 1.0, fillOpacity = 0.5,
+      fillColor = ~pal(insecure_percent),
+      label = labels,
+      labelOptions = labelOptions(
+        style = list("font-weight" = "normal", "font-family" = "Arial", padding = "3px 8px"),
+        textsize = "15px",
+        direction = "auto")) %>%
+    addLegend(pal = pal, values = var_range, opacity = 0.7, title = "Food Insecurity (%)", position = "bottomright") %>%
+  addTiles()
+
+m
+```
+
+
 On the other hand, the food insecurity rate among children is significantly higher. Unlike the overall food insecurity rate, the child food insecurity rate has actually worsened in recent years.
 
 # Child Food Insecurity {.tabset}
@@ -178,33 +247,31 @@ glptools::trend_maxmin(
 
 # Food Access 
 
-Here's a closer look at food access in Louisville. It includes the percentage of the population that is considered low-income and far from a grocery store, the percentage of households that do not have a vehicle and are far from a grocery store and the percentage of households that rely on certain food benefits and are far from a grocery store.
+Here's a closer look at food access in Louisville. When it comes to food deserts, most residents in Louisville have to travel more than a mile to access a grocery store, however that is particularly burdensome for residents who are low-income, who don't have a vehicle, and who are seniors.
 
 ## Limited Access to Grocery Stores and Income Constraints {.tabset}
 
 When looking at the food ecosystem, it's important to consider not only those who live far from a grocery store but also those who live far from a grocery store *and* live on a low income. 
 
-* **How Louisville's Currently Doing:** Louisville currently ranks 6th on this metric, with about 21.4% of residents living with low incomes and far from grocery stores. That's about three quarters the rate of Louisville's currently worst performing peer city, Birmingham. 
-* **How Louisville's Performed Over Time:** Louisville has seen its numbers stay fairly steady over the past five years of most recent data. Generally, over the same time period, Louisville's peers have been improving.
+* **How Louisville's Currently Doing:** Louisville currently ranks 8th on this metric, with 68.5% of low-income residents living far from grocery stores.
+* **How Louisville's Performed Over Time:** In 2017, the percent of low-income residents living far from a grocery store increased with the closure of two downtown Krogers, and has continued to increase since then.
 
-In terms of **race**, more than a quarter of White residents in Louisville have limited access to grocery stores, vs. 17.8% of Black residents and 15.6% of Hispanic residents. The numbers are significantly higher in Louisville's peer cities. However, it's important to note that this race data considers the *entire* population that is far from a grocery store (not just those living with low incomes). Therefore, the race data includes a percentage of the population that lives on a higher income and therefore can afford to drive greater distances to a grocery store. 
-
-**What's considered far from a grocery store:** Anyone who is more than a one-mile walk or drive is considred far from a grocery store.
+**What's considered far from a grocery store:** Anyone who is more than a one-mile walk or drive is considered far from a grocery store.
 
 ### Ranking
 ```{r food access ranking}
 load("intermediate_data/food_access_county.rda")
 
-load("intermediate_data/food desert exports.RData ")
+load("intermediate_data/food desert exports.RData")
 
 this_title <- "Low Income and Far from Food"
-this_subtitle <- "People who are living with low incomes and far from grocery stores"
+this_subtitle <- "Percent of low-income residents far from grocery stores"
 this_caption <- "\n\nData from the USDA's Food Access Research Atlas, 2019"
 this_caption_trend_graphs <- "\n\nData from the USDA's Food Access Research Atlas"
 
 glptools::ranking(
   poverty_fd_county,
-  food_desert,
+  pct_food_insecure,
   year = 2020,
   peers = "Current",
   order = "Ascending",
@@ -222,13 +289,13 @@ glptools::ranking(
 ### Trend
 ```{r food access trend}
 this_title <- "Low Income and Limited Access to Food"
-this_subtitle <- "People who are living with low incomes and far from grocery stores"
+this_subtitle <- "Low-income residents far from grocery stores"
 this_caption <- "\n\nData from the USDA's Food Access Research Atlas, 2019"
 this_caption_trend_graphs <- "\n\nData from the USDA's Food Access Research Atlas"
 
 glptools::trend(
   poverty_fd_county,
-  food_desert,
+  pct_food_insecure,
   plot_title = this_title,
   subtitle = this_subtitle,
   caption_text = this_caption_trend_graphs,
@@ -244,7 +311,7 @@ this_caption_trend_graphs <- "\n\nData from the USDA's Food Access Research Atla
 
 glptools::trend_maxmin(
   poverty_fd_county,
-  food_desert,
+  pct_food_insecure,
   zero_start = T,
   order='Ascending',
   y_title = "Percentage points change",
@@ -253,25 +320,9 @@ glptools::trend_maxmin(
   caption_text = this_caption_trend_graphs)
 ```
 
-### Race 
-*The race data considers the entire population (not just those with low incomes) who live more than 10 miles from a grocery store.*
-```{r food access by race, results='hide'}
-load("intermediate_data/food_access_race_county.rda")
-
-this_title <- "Limited Access to Grocery Stores by Race"
-this_caption_trend_graphs <- "\n\nData from the USDA's Food Access Research Atlas"
-
-glptools::trend(
-  food_access_race_county,
-  percent_more_than_10_miles_grocery,
-  cat = 'race',
-  pctiles = F,
-  plot_title = this_title, 
-  caption_text = this_caption_trend_graphs,
-  y_title = "Percent")
-```
-
 ### Map
+This map shows the percentage of *all* residents who are low-income and far from a grocery. 
+
 ```{r limited food access map, out.width = '100%', out.height=500}
 load("intermediate_data/kentucky_food_atlas_data.rda")
 
@@ -280,8 +331,7 @@ kentucky_food_atlas_data <- kentucky_food_atlas_data %>%
   mutate(lalowi1share=as.numeric(lalowi1share))
 
 poverty_fd_map %<>%
-  filter(year == 2020, FIPS == "21111") %>%
-  select(-FIPS)
+  filter(year == 2020, str_sub(tract, 1, 5) == "21111") 
 
 make_map(poverty_fd_map, 'food_desert', 'Low Access and Low Income')
 ```
@@ -290,8 +340,8 @@ make_map(poverty_fd_map, 'food_desert', 'Low Access and Low Income')
 
 It becomes significantly more challenging to access nutritious food at a grocery store if a household lives far away and does not have access to a vehicle. These households often must rely on public transportation or shop at stores that are closer to them that potentially have less nutritious food. 
 
-* **How Louisville's Currently Doing:** More than 6% of Louisville's households live more than a mile from a grocery store and do not have a vehicle. That puts it in the bottom half of its peer cohort. 
-* **How Louisville's Performed Over Time:** Louisville saw a sharp increase in the number of households without vehicles who live far from a grocery in 2017. That makes it one of the worst performers of its peers.
+* **How Louisville's Currently Doing:** More than two-thirds of Louisville's households without a vehicle live more than a mile from a grocery store and do not have a vehicle. That puts it in the bottom half of its peer cohort. 
+* **How Louisville's Performed Over Time:** Louisville saw a sharp increase in the number of households without vehicles who live far from a grocery in 2017. That makes it the worst performer of its peers.
 
 **More Context:** In Louisville, about 10.4% of households overall do not have access to a vehicle, according to the U.S. Census Bureau's American Community Survey. Statewide, that number is 7%.
 
@@ -300,13 +350,13 @@ It becomes significantly more challenging to access nutritious food at a grocery
 load("intermediate_data/food_access_no_vehicle_county.rda")
 
 this_title <- "No Vehicle and Far from Food"
-this_subtitle <- "Households with no vehicles and more than 1 mile from a grocery store"
+this_subtitle <- "Percent of households with no vehicles who are more than 1 mile from a grocery store"
 this_caption <- "\n\nData from the USDA's Food Access Research Atlas, 2019"
 this_caption_trend_graphs <- "\n\nData from the USDA's Food Access Research Atlas"
 
 glptools::ranking(
   vehicle_fd_county,
-  food_desert,
+  pct_food_insecure,
   year = 2020,
   peers = "Current",
   order = "Ascending",
@@ -319,6 +369,8 @@ glptools::ranking(
   accuracy = 0.1,
   alternate_text = NULL,
   ranking_colors = TRUE)
+
+
 ```
 
 ### Trend
@@ -330,7 +382,7 @@ this_caption_trend_graphs <- "\n\nData from the USDA's Food Access Research Atla
 
 glptools::trend(
   vehicle_fd_county,
-  food_desert,
+  pct_food_insecure,
   plot_title = this_title,
   subtitle = this_subtitle,
   axis_function = scales::percent_format(accuracy = 0.1),
@@ -347,7 +399,7 @@ this_caption_trend_graphs <- "\n\nData from the USDA's Food Access Research Atla
 
 glptools::trend_maxmin(
   vehicle_fd_county,
-  food_desert,
+  pct_food_insecure,
   zero_start = T,
   order='Ascending',
   y_title = "Percentage points change",
@@ -357,6 +409,9 @@ glptools::trend_maxmin(
 ```
 
 ### Map
+
+This map shows the percentage of *all* residents who lack a vehicle and far from a grocery. 
+
 ```{r limited vehicle access map, out.width = '100%', out.height=500}
 load("intermediate_data/kentucky_food_atlas_data.rda")
 
@@ -367,12 +422,31 @@ kentucky_food_atlas_data <- kentucky_food_atlas_data %>%
 make_map(vehicle_fd_map, 'food_desert', 'Low Access Households without Vehicle')
 ```
 
+### Bus lines
+
+This map shows areas within a quarter-mile walk of bus stops in teal. Many areas with the highest concentration of food security and low vehicle access are well-covered by TARC routes, though some neighborhoods, particularly in South Louisville, are not. It's important to note that neighborhoods toward the edge of the county that appear very light on the map still contain households with no cars who are far from a grocery and miles from the nearest bus stop.
+
+```{r bus_line, out.width = '100%', out.height=500}
+load("intermediate_data/bus_stop_isolines.RData")
+
+bus_stop_isolines %<>%
+  sf::st_buffer(50)
+
+make_map(vehicle_fd_map, 'food_desert', 'Low Access Households without Vehicle') %>%
+  addPolygons(
+    data = bus_stop_isolines,
+    color = "#00a9b7FF",
+    weight = 2) 
+
+```
+
+
 ## Limited Access to Grocery Stores and SNAP Benefits {.tabset}
 
 These are the households that live far from a grocery store and receive benefits from the Supplemental Nutrition Assistance Program (SNAP).
 
-* **How Louisville's Currently Doing:** 7.8% of Louisville's households receive SNAP benefits and live more than a mile from a grocery store. That puts the city in the middle of its peers.  
-* **How Louisville's Performed Over Time:** Louisville's rate has decreased modestly over the past five years in which data is available. However, we don't have 
+* **How Louisville's Currently Doing:** Around 70% of Louisville's households that receive SNAP benefits and live more than a mile from a grocery store. That puts the city in the middle of its peers.  
+* **How Louisville's Performed Over Time:** Louisville's rate has increased sharply over the past five years in which data is available.
 
 **More Context:** In Louisville, about 12% of households overall receive food benefits, according to the U.S. Census Bureau's American Community Survey. Statewide, that number is 13%.
 
@@ -387,7 +461,7 @@ this_caption_trend_graphs <- "\n\nData from the USDA's Food Access Research Atla
 
 glptools::ranking(
   snap_fd_county,
-  food_desert,
+  pct_food_insecure,
   year = 2020,
   peers = "Current",
   order = "Ascending",
@@ -411,7 +485,7 @@ this_caption_trend_graphs <- "\n\nData from the USDA's Food Access Research Atla
 
 glptools::trend(
   snap_fd_county,
-  food_desert,
+  pct_food_insecure,
   plot_title = this_title,
   subtitle = this_subtitle,
   caption_text = this_caption_trend_graphs,
@@ -427,7 +501,7 @@ this_caption_trend_graphs <- "\n\nData from the USDA's Food Access Research Atla
 
 glptools::trend_maxmin(
   snap_fd_county,
-  food_desert,
+  pct_food_insecure,
   zero_start = T,
   order='Ascending',
   y_title = "Percentage points change",
@@ -437,6 +511,8 @@ glptools::trend_maxmin(
 ```
 
 ### Map
+This map shows the percentage of *all* residents who receive SNAP benefits and far from a grocery. 
+
 ```{r SNAP map, out.width = '100%', out.height=500}
 load("intermediate_data/kentucky_food_atlas_data.rda")
 
@@ -445,10 +521,206 @@ kentucky_food_atlas_data <- kentucky_food_atlas_data %>%
   mutate(lasnap1share=as.numeric(lasnap1share))
 
 snap_fd_map %<>%
-  filter(year == 2020, FIPS == "21111") %>%
-  select(-FIPS)
+  filter(year == 2020, str_sub(tract, 1, 5) == "21111")
 
 make_map(snap_fd_map, 'food_desert', 'Low Access and SNAP')
+```
+
+
+## Limited Access to Grocery Stores and Seniors {.tabset}
+
+These are the Louisville residents who live far from a grocery store and are seniors (age 65+).
+
+* **How Louisville's Currently Doing:** 75% of Louisville's seniors  live more than a mile from a grocery store. That puts the city in the middle of its peers.  
+* **How Louisville's Performed Over Time:** Louisville's rate has increased quicker than its peers over the past five years in which data is available.
+
+### Ranking
+```{r food access senior ranking}
+this_title <- "Seniors Far from Food"
+this_subtitle <- "Seniors age 65+ who are more than 1 mile from a grocery store"
+this_caption <- "\n\nData from the USDA's Food Access Research Atlas, 2019"
+this_caption_trend_graphs <- "\n\nData from the USDA's Food Access Research Atlas"
+
+glptools::ranking(
+  age_fd_county,
+  pct_food_insecure,
+  year = 2020,
+  peers = "Current",
+  order = "Ascending",
+  y_title = "Percent",
+  plot_title = this_title %p% ", 2020",
+  subtitle = this_subtitle,
+  caption_text = this_caption,
+  bar_label = TRUE,
+  sigfig = 3,
+  accuracy = 0.1,
+  alternate_text = NULL,
+  ranking_colors = TRUE)
+
+# age_stack <- age_fd_county %>%
+#   filter(year == 2020) %>%
+#   pull_peers(add_info = T) %>%
+#   filter(current == 1) %>%
+#   arrange(pct_food_insecure) %>%
+#   mutate(
+#     rank = row_number(),
+#     names = paste0(rank, ". ", city))
+# 
+# age_stack %<>%
+#   select(names, rank, city, food_desert, non_food_desert) %>%
+#   pivot_longer(food_desert:non_food_desert) %>%
+#   arrange(desc(name)) %>%
+#   group_by(city) %>%
+#   mutate(label_ypos = if_else(name == "food_desert", 
+#                               value[name == "food_desert"], 
+#                               sum(value)))
+# 
+# color_values <- c("#800055", "#00A9B7")
+# color_names <- c("Food Secure", "Food Insecure")
+# 
+# age_stack$color <- "Food Insecure"
+# age_stack$color[age_stack$name == "non_food_desert"] <- "Food Secure"
+# 
+# age_stack$alpha = 0.9
+# age_stack$alpha[age_stack$city == "Louisville"] <- 1
+# 
+# # Create numeric labels
+# label_text <- age_stack$value %>%
+#   scales::percent(accuracy = 0.1, scale = 1, suffix = "%")
+# 
+# # Set text format, highlight and italicise Louisville text, highlight Louisville bar
+# age_stack$textcolor <- "#000000"
+# age_stack$textcolor[age_stack$name == "pct_above_frl"] <- "#000000"
+# 
+# age_stack$textfont <- "Montserrat"
+# age_stack$textfont[age_stack$city == "Louisville"] <- "Montserrat Bold"
+# 
+# label_color_names <- c("white", "black")
+# label_color_values <- c("#000000", "#ffffff")
+# 
+# age_stack$label_color <- "white"
+# age_stack$label_color[age_stack$name == "non_food_desert"] <- "black"
+# #df$linecolor <- "#ffffff"
+# #df$linecolor[df$city == "Louisville"] <- "#00a9b7"
+# age_stack$lou <- if_else(age_stack$city == "Louisville", 1, 0)
+# age_stack$text_alignment <- 1.1
+# # age_stack$text_alignment[age_stack$city %in% "Grand Rapids" &
+# #                           age_stack$name == "pct_above_frl"] <- 1.02
+# ### PLOT GRAPH
+# 
+# text_size = 2
+# 
+# # Initial plot
+# p <- ggplot(data = age_stack,
+#             aes(x = factor(names, levels = unique(rev(names))),
+#                 y = value,
+#                 alpha = alpha))
+# p <- p + guides(color = FALSE, alpha = FALSE)
+# # Add bars
+# p <- p +
+#   geom_bar(aes(fill = factor(color, levels = color_names, ordered = TRUE)),
+#            stat = "identity",
+#            size = text_size) +
+#   coord_flip() +
+#   ggthemes::theme_tufte()
+# 
+# p <- p + scale_fill_manual(values = color_values, guide = guide_legend(reverse = TRUE)) + 
+#   scale_alpha(range = c(0.8, 1))
+# 
+# text_scale <- 2
+# 
+# #p <- p + scale_color_manual(values = c("#ffffff", "#00a9b7"))
+# # Add features
+# title_scale <- min(1, 48 / nchar("Senior Food Security"))
+# 
+# p <- p + theme(text = element_text(family = "Museo Sans"),
+#                plot.title = element_text(size = 14 * title_scale * text_size, hjust = 0.5, margin = margin(b = 10, unit = "pt")),
+#                legend.text = element_text(size = 10 * text_scale,
+#                                 margin = margin(b = 0.2 * text_scale, t = 0.2 * text_scale, unit = "cm")),
+#                axis.text.y = element_text(hjust = 0,
+#                                           size = 10 * text_size,
+#                                           color = rev(age_stack$textcolor),
+#                                           family = rev(age_stack$textfont)),
+#                axis.title.y = element_blank(),
+#                axis.title.x = element_text(size = 10 * text_size),
+#                axis.ticks = element_blank(),
+#                axis.text.x = element_blank(),
+#                plot.caption = element_text(size = 10 * text_size, lineheight = 0.5),
+#                legend.title = element_blank())
+# 
+# p <- p +
+#   labs(caption = "Source: Greater Louisville Project
+#                   Data from Feeding America")
+# 
+# # Add numeric labels to bars based on bar_label parameter
+# p <- p + geom_text(aes(label = label_text,
+#                        hjust = text_alignment,
+#                        color = factor(label_color),
+#                        family = textfont,
+#                        group = name,
+#                        y = label_ypos),
+#                    position = "identity",
+#                    size = 4.5 * text_size) +
+#   scale_colour_manual(values=c("#ffffff", "#000000"))
+# 
+# # Add vertical line to the left side of the bars based on the h_line parameter
+# 
+# # Add remaining text
+# p <- p + labs(title = "Senior Food Security",
+#               y = "Percent") +
+#   theme(legend.position = "bottom")
+# 
+# p <- p +
+#   theme(
+#     panel.background = element_rect(fill = "transparent", color = NA), # bg of the panel
+#     plot.background = element_rect(fill = "transparent", color = NA), # bg of the plot
+#     legend.background = element_rect(fill = "transparent", color = "transparent"), # get rid of legend bg
+#     legend.box.background = element_rect(fill = "transparent", color = "transparent"), # get rid of legend panel bg
+#     legend.key = element_rect(fill = "transparent", colour = NA))
+# 
+# p
+```
+
+### Trend
+```{r food access senior trend}
+this_title <- "Seniors Far from Food"
+this_subtitle <- "Seniors who are more than 1 mile from a grocery store"
+this_caption <- "\n\nData from the USDA's Food Access Research Atlas, 2019"
+this_caption_trend_graphs <- "\n\nData from the USDA's Food Access Research Atlas"
+
+glptools::trend(
+  age_fd_county,
+  pct_food_insecure,
+  plot_title = this_title,
+  subtitle = this_subtitle,
+  caption_text = this_caption_trend_graphs,
+  y_title = "Percent")
+```
+
+### Best and Worst Performers
+```{r food access senior best and worse, results='hide'}
+this_title <- "SNAP Recipients Far from Food"
+this_subtitle <- "SNAP households that are more than 1 mile from a grocery store"
+this_caption <- "\n\nData from the USDA's Food Access Research Atlas, 2019"
+this_caption_trend_graphs <- "\n\nData from the USDA's Food Access Research Atlas"
+
+glptools::trend_maxmin(
+  snap_fd_county,
+  pct_food_insecure,
+  zero_start = T,
+  order='Ascending',
+  y_title = "Percentage points change",
+  plot_title = this_title,
+  subtitle = this_subtitle,
+  caption_text = this_caption_trend_graphs)
+```
+
+### Map
+```{r age map, out.width = '100%', out.height=500}
+age_fd_map %<>%
+  filter(year == 2020, str_sub(tract, 1, 5) == "21111")
+
+make_map(age_fd_map, 'food_desert', 'Low Access and SNAP')
 ```
 
 # Food Environment

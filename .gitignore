@@ -27,3 +27,7 @@ vignettes/*.pdf
 # R Environment Variables
 .Renviron
 Louisville-Food-Security.Rproj
+
+docs/MuseoSans_300.otf
+
+docs/MuseoSans_300_Italic.otf
