@@ -247,14 +247,14 @@ glptools::trend_maxmin(
 
 # Food Access 
 
-Here's a closer look at food access in Louisville. When it comes to food deserts, most residents in Louisville have to travel more than a mile to access a grocery store, however that is particularly burdensome for residents who are low-income, who don't have a vehicle, and who are seniors.
+Here's a closer look at food access in Louisville. When it comes to food deserts, most residents in Louisville have to travel more than a mile to access a grocery store, however that is particularly burdensome for residents who are low-income, who don't have a vehicle, and who are seniors. Since 2011, Louisville has seen the *largest* declines in food access among its peers.
 
 ## Limited Access to Grocery Stores and Income Constraints {.tabset}
 
 When looking at the food ecosystem, it's important to consider not only those who live far from a grocery store but also those who live far from a grocery store *and* live on a low income. 
 
 * **How Louisville's Currently Doing:** Louisville currently ranks 8th on this metric, with 68.5% of low-income residents living far from grocery stores.
-* **How Louisville's Performed Over Time:** In 2017, the percent of low-income residents living far from a grocery store increased with the closure of two downtown Krogers, and has continued to increase since then.
+* **How Louisville's Performed Over Time:** In 2017, the percent of low-income residents living far from a grocery store increased with the closure of two downtown Krogers, and has continued to increase since then. While Louisville ranks in the middle of its peers, it has seen the largest increase in low-income residents living far from a grocery since 2011.
 
 **What's considered far from a grocery store:** Anyone who is more than a one-mile walk or drive is considered far from a grocery store.
 
@@ -264,7 +264,7 @@ load("intermediate_data/food_access_county.rda")
 
 load("intermediate_data/food desert exports.RData")
 
-this_title <- "Low Income and Far from Food"
+this_title <- "Low Income Residents far from Food"
 this_subtitle <- "Percent of low-income residents far from grocery stores"
 this_caption <- "\n\nData from the USDA's Food Access Research Atlas, 2019"
 this_caption_trend_graphs <- "\n\nData from the USDA's Food Access Research Atlas"
@@ -288,11 +288,6 @@ glptools::ranking(
 
 ### Trend
 ```{r food access trend}
-this_title <- "Low Income and Limited Access to Food"
-this_subtitle <- "Low-income residents far from grocery stores"
-this_caption <- "\n\nData from the USDA's Food Access Research Atlas, 2019"
-this_caption_trend_graphs <- "\n\nData from the USDA's Food Access Research Atlas"
-
 glptools::trend(
   poverty_fd_county,
   pct_food_insecure,
@@ -304,18 +299,13 @@ glptools::trend(
 
 ### Best and Worst Performers
 ```{r food access best and worse, results='hide'}
-this_title <- "Low Income and Limited Access to Food"
-this_subtitle <- "People who are living with low incomes and far from grocery stores"
-this_caption <- "\n\nData from the USDA's Food Access Research Atlas, 2019"
-this_caption_trend_graphs <- "\n\nData from the USDA's Food Access Research Atlas"
-
 glptools::trend_maxmin(
   poverty_fd_county,
   pct_food_insecure,
   zero_start = T,
   order='Ascending',
   y_title = "Percentage points change",
-  plot_title = this_title,
+  plot_title = "Change in " %p% this_title,
   subtitle = this_subtitle,
   caption_text = this_caption_trend_graphs)
 ```
@@ -349,7 +339,7 @@ It becomes significantly more challenging to access nutritious food at a grocery
 ```{r food access no vehicle ranking}
 load("intermediate_data/food_access_no_vehicle_county.rda")
 
-this_title <- "No Vehicle and Far from Food"
+this_title <- "Households Without a Vehicle far from Food"
 this_subtitle <- "Percent of households with no vehicles who are more than 1 mile from a grocery store"
 this_caption <- "\n\nData from the USDA's Food Access Research Atlas, 2019"
 this_caption_trend_graphs <- "\n\nData from the USDA's Food Access Research Atlas"
@@ -375,11 +365,6 @@ glptools::ranking(
 
 ### Trend
 ```{r food access no vehicle trend}
-this_title <- "No Vehicle and Far from Food"
-this_subtitle <- "Households with no vehicles and more than 1 mile from a grocery store"
-this_caption <- "\n\nData from the USDA's Food Access Research Atlas, 2019"
-this_caption_trend_graphs <- "\n\nData from the USDA's Food Access Research Atlas"
-
 glptools::trend(
   vehicle_fd_county,
   pct_food_insecure,
@@ -392,18 +377,13 @@ glptools::trend(
 
 ### Best and Worst Performers
 ```{r food access no vehicle best and worse, results='hide'}
-this_title <- "No Vehicle and Far from Food"
-this_subtitle <- "Households with no vehicles and more than 1 mile from a grocery store"
-this_caption <- "\n\nData from the USDA's Food Access Research Atlas, 2019"
-this_caption_trend_graphs <- "\n\nData from the USDA's Food Access Research Atlas"
-
 glptools::trend_maxmin(
   vehicle_fd_county,
   pct_food_insecure,
   zero_start = T,
   order='Ascending',
   y_title = "Percentage points change",
-  plot_title = this_title,
+  plot_title = "Change in " %p% this_title,
   subtitle = this_subtitle,
   caption_text = this_caption_trend_graphs)
 ```
@@ -446,15 +426,13 @@ make_map(vehicle_fd_map, 'food_desert', 'Low Access Households without Vehicle')
 These are the households that live far from a grocery store and receive benefits from the Supplemental Nutrition Assistance Program (SNAP).
 
 * **How Louisville's Currently Doing:** Around 70% of Louisville's households that receive SNAP benefits and live more than a mile from a grocery store. That puts the city in the middle of its peers.  
-* **How Louisville's Performed Over Time:** Louisville's rate has increased sharply over the past five years in which data is available.
+* **How Louisville's Performed Over Time:** Louisville's rate has increased sharply since 2011, and it is the worst performer among its peers.
 
 **More Context:** In Louisville, about 12% of households overall receive food benefits, according to the U.S. Census Bureau's American Community Survey. Statewide, that number is 13%.
 
 ### Ranking
 ```{r food access SNAP ranking}
-load("intermediate_data/food_access_snap_county.rda")
-
-this_title <- "SNAP Recipients Far from Food"
+this_title <- "SNAP Recipients far from Food"
 this_subtitle <- "SNAP households that are more than 1 mile from a grocery store"
 this_caption <- "\n\nData from the USDA's Food Access Research Atlas, 2019"
 this_caption_trend_graphs <- "\n\nData from the USDA's Food Access Research Atlas"
@@ -478,11 +456,6 @@ glptools::ranking(
 
 ### Trend
 ```{r food access SNAP trend}
-this_title <- "SNAP Recipients Far from Food"
-this_subtitle <- "SNAP households that are more than 1 mile from a grocery store"
-this_caption <- "\n\nData from the USDA's Food Access Research Atlas, 2019"
-this_caption_trend_graphs <- "\n\nData from the USDA's Food Access Research Atlas"
-
 glptools::trend(
   snap_fd_county,
   pct_food_insecure,
@@ -494,18 +467,13 @@ glptools::trend(
 
 ### Best and Worst Performers
 ```{r food access SNAP best and worse, results='hide'}
-this_title <- "SNAP Recipients Far from Food"
-this_subtitle <- "SNAP households that are more than 1 mile from a grocery store"
-this_caption <- "\n\nData from the USDA's Food Access Research Atlas, 2019"
-this_caption_trend_graphs <- "\n\nData from the USDA's Food Access Research Atlas"
-
 glptools::trend_maxmin(
   snap_fd_county,
   pct_food_insecure,
   zero_start = T,
   order='Ascending',
   y_title = "Percentage points change",
-  plot_title = this_title,
+  plot_title = "Change in " %p% this_title,
   subtitle = this_subtitle,
   caption_text = this_caption_trend_graphs)
 ```
@@ -536,7 +504,7 @@ These are the Louisville residents who live far from a grocery store and are sen
 
 ### Ranking
 ```{r food access senior ranking}
-this_title <- "Seniors Far from Food"
+this_title <- "Seniors far from Food"
 this_subtitle <- "Seniors age 65+ who are more than 1 mile from a grocery store"
 this_caption <- "\n\nData from the USDA's Food Access Research Atlas, 2019"
 this_caption_trend_graphs <- "\n\nData from the USDA's Food Access Research Atlas"
@@ -683,11 +651,6 @@ glptools::ranking(
 
 ### Trend
 ```{r food access senior trend}
-this_title <- "Seniors Far from Food"
-this_subtitle <- "Seniors who are more than 1 mile from a grocery store"
-this_caption <- "\n\nData from the USDA's Food Access Research Atlas, 2019"
-this_caption_trend_graphs <- "\n\nData from the USDA's Food Access Research Atlas"
-
 glptools::trend(
   age_fd_county,
   pct_food_insecure,
@@ -699,28 +662,70 @@ glptools::trend(
 
 ### Best and Worst Performers
 ```{r food access senior best and worse, results='hide'}
-this_title <- "SNAP Recipients Far from Food"
-this_subtitle <- "SNAP households that are more than 1 mile from a grocery store"
-this_caption <- "\n\nData from the USDA's Food Access Research Atlas, 2019"
-this_caption_trend_graphs <- "\n\nData from the USDA's Food Access Research Atlas"
-
 glptools::trend_maxmin(
   snap_fd_county,
   pct_food_insecure,
   zero_start = T,
   order='Ascending',
   y_title = "Percentage points change",
-  plot_title = this_title,
+  plot_title = "Change in " %p% this_title,
   subtitle = this_subtitle,
   caption_text = this_caption_trend_graphs)
 ```
 
-### Map
+### Neighborhood Map
+This map shows the percentage of *all* residents who are seniors and are far from a grocery. 
+
 ```{r age map, out.width = '100%', out.height=500}
 age_fd_map %<>%
   filter(year == 2020, str_sub(tract, 1, 5) == "21111")
 
-make_map(age_fd_map, 'food_desert', 'Low Access and SNAP')
+make_map(age_fd_map, 'food_desert', 'Seniors far from food')
+```
+
+### Metro Council District Map
+
+This map shows the percentage of *all* residents who are seniors and are far from a grocery. 
+
+```{r, out.width = '100%', out.height=500}
+age_district_map <- age_fd_map %>%
+  left_join(crosswalk, by = "tract") %>%
+  left_join(pop_df, by = "tract") %>%
+  group_by(district) %>%
+  summarize(
+    dist_pop = sum(population * pop),
+    dist_food_insecure = sum(pop * food_desert * population / 100, na.rm = TRUE),
+    insecure_percent = dist_food_insecure / dist_pop * 100)
+
+dist_map <- map_district %>%
+  left_join(age_district_map, by = "district")
+
+
+ labels <- sprintf("%s<br/>%s",
+                    "District " %p% dist_map$district,
+                    scales::percent(dist_map$insecure_percent, scale = 1, accuracy = 0.1) %p% " of residents are seniors far from a grocery.") %>%
+    lapply(htmltools::HTML)
+
+ 
+color_vector <- RColorBrewer::brewer.pal(9, "BuPu")
+var_range <- range(dist_map$insecure_percent)
+pal <- leaflet::colorNumeric(
+  palette = color_vector,
+  domain = var_range)
+
+m <- leaflet(dist_map) %>%
+  addPolygons(
+      color = "#444444", weight = 1, smoothFactor = 0.5, opacity = 1.0, fillOpacity = 0.5,
+      fillColor = ~pal(insecure_percent),
+      label = labels,
+      labelOptions = labelOptions(
+        style = list("font-weight" = "normal", "font-family" = "Arial", padding = "3px 8px"),
+        textsize = "15px",
+        direction = "auto")) %>%
+    addLegend(pal = pal, values = var_range, opacity = 0.7, title = "Food Insecurity (%)", position = "bottomright") %>%
+  addTiles()
+
+m
 ```
 
 # Food Environment
@@ -942,7 +947,7 @@ The budget shortfall in Louisville and its peer cities has decreased over time. 
 > **Bridging the Household Budget Gap:**
 
 * Bridging this $46 million gap in Louisville (and similar gaps in other cities) is tricky. Government programs like the Supplemental Nutrition Assistance Program (SNAP), WIC program and school meal programs help some — but far from all — of the food insecure. 
-* In Louisville, households can only make up to 200% of the federal poverty level to qualify for federal food assistance. In 2019, Feeding America estimated that 34.1% of the food insecure population in Jefferson County live in households that make *more than* 200% of the federal poverty level and therefore do not qualify for federal food assistance. That means that about 30,584 people in the Louisville area are food insecure and do not qualify for federal food assistance. Many depend on the charitable sector or other non-governmental sources to meet their food needs.
+* In Louisville, households can only make up to 200% of the federal poverty level to qualify for federal food assistance. In 2019, Feeding America estimated that 34.1% of the food insecure population in Jefferson County live in households that make *more than* 200% of the federal poverty level and therefore do not qualify for federal food assistance. That means that about 30,584 people in the Louisville area are food insecure and do not qualify for federal food assistance. At least 12,200 of those people are children. Many depend on the charitable sector or other non-governmental sources to meet their food needs.
 
 ![](Benefit_gap.png)
 
