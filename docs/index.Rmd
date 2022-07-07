@@ -97,7 +97,7 @@ glptools::trend(
 
 ## Best and Worst Performers
 ```{r food insecurity best and worst, results='hide'}
-this_title <- "Food Insecurity"
+this_title <- "Change in Food Insecurity"
 this_caption <- "\n\nData from Feeding America's annual Map the Meal Gap study, 2021"
 this_caption_trend_graphs <- "\n\nData from Feeding America's annual Map the Meal Gap study"
 
@@ -230,7 +230,7 @@ glptools::trend(
 
 ## Best and Worst Performers
 ```{r child food insecurity best and worst, results='hide'}
-this_title_child <- "Child Food Insecurity"
+this_title_child <- "Change in Child Food Insecurity"
 this_caption_child <- "\n\nData from Feeding America's annual Map the Meal Gap study, 2021"
 this_caption_trend_graphs_child <- "\n\nData from Feeding America's annual Map the Meal Gap study"
 
